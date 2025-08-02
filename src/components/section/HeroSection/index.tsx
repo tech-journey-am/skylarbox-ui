@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { BLUR_DATA_URL } from "@/components/constants";
 import { HeroImageSkeleton } from "@/components/ui/Skeleton";
 import { useDemoLoading } from "@/hooks/useDemoLoading";
+import ProductImageCard from "@/components/ui/ProductImageCard";
 
 export default function HeroSection() {
   const { isLoading: imageLoading } = useDemoLoading({ duration: 1000 });
@@ -47,27 +46,24 @@ export default function HeroSection() {
           >
             {imageLoading && <HeroImageSkeleton />}
             <div
-              className={`relative w-full h-96 lg:h-[500px] bg-gradient-to-br from-brand-lavender/30 to-brand-yellow/30 rounded-2xl overflow-hidden ${
+              className={`relative w-full h-96 transition-transform hover:scale-105 lg:h-[500px] ${
                 imageLoading ? "hidden" : "block"
               }`}
             >
-              <Image
-                src='/images/box/demo.png'
-                alt='Skylarbox Demo'
-                fill
-                className='object-cover'
-                placeholder='blur'
-                blurDataURL={BLUR_DATA_URL}
+              <ProductImageCard
+                giftImage='/images/box/demo.png'
+                productImage='/images/box/box_1.png'
+                giftIcon='🌸'
+                alt='Skylarbox'
+                className='w-full h-full'
+                isHoverToOpen={false}
+                onImageChange={(isProduct) => {
+                  console.log(
+                    "Image changed to:",
+                    isProduct ? "product" : "gift"
+                  );
+                }}
               />
-              <div className='absolute inset-0 bg-black/20 flex items-center justify-center'>
-                <div className='text-center text-white'>
-                  <div className='w-32 h-32 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-4'>
-                    <span className='text-4xl'>🌸</span>
-                  </div>
-                  <p className='text-lg font-medium'>Hộp quà Skylarbox</p>
-                  <p className='text-sm'>Mở ra để khám phá</p>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>

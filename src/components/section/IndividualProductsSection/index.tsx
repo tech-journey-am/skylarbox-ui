@@ -2,40 +2,51 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { BLUR_DATA_URL } from "@/components/constants";
 import { ProductCardSkeleton } from "@/components/ui/Skeleton";
 import { useMultipleDemoLoading } from "@/hooks/useDemoLoading";
+import ProductImageCard from "@/components/ui/ProductImageCard";
+import { BLUR_DATA_URL } from "@/components/constants";
 
 const individualProducts = [
   {
     name: "Bộ bài Skylar Oracle",
     price: "299.000đ",
     category: "Oracle Cards",
-    image: "/images/box/skylar_oracle_1.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/skylar_oracle_1.png",
+    giftIcon: "🔮",
   },
   {
     name: "Bộ bài Skylar Oracle",
     price: "299.000đ",
     category: "Oracle Cards",
-    image: "/images/box/skylar_oracle_2.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/skylar_oracle_2.png",
+    giftIcon: "🔮",
   },
   {
     name: "Thẻ cảm xúc",
     price: "199.000đ",
     category: "Emotion Cards",
-    image: "/images/box/the_cam_xuc.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/the_cam_xuc.png",
+    giftIcon: "💝",
   },
   {
     name: "Thiệp chữa lành",
     price: "99.000đ",
     category: "Cards",
-    image: "/images/box/thiep_1.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/thiep_1.png",
+    giftIcon: "💌",
   },
   {
     name: "Thiệp chữa lành",
     price: "99.000đ",
     category: "Cards",
-    image: "/images/box/thiep_2.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/thiep_2.png",
+    giftIcon: "💌",
   },
 ];
 
@@ -61,7 +72,7 @@ export default function IndividualProductsSection() {
           </p>
         </div>
 
-        <div className='flex overflow-x-auto space-x-6 pb-6 scrollbar-hide'>
+        <div className='flex overflow-x-auto space-x-6 pb-6 max-md:scrollbar-hide'>
           {individualProducts.map((product, index) => (
             <motion.div
               key={index}
@@ -72,20 +83,22 @@ export default function IndividualProductsSection() {
             >
               {!isItemLoaded(index) && <ProductCardSkeleton />}
               <div
-                className={`bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow ${
+                className={`bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-shadow ${
                   !isItemLoaded(index) ? "hidden" : "block"
                 }`}
               >
-                <div className='bg-gradient-to-br from-brand-lavender/20 to-brand-yellow/20 rounded-xl h-48 mb-4 flex items-center justify-center relative overflow-hidden'>
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className='object-contain p-4'
-                    placeholder='blur'
-                    blurDataURL={BLUR_DATA_URL}
-                  />
-                  <div className='absolute bottom-2 left-2 bg-white/90 px-2 py-1 rounded-full'>
+                <div className='h-48 mb-4 relative overflow-hidden rounded-xl'>
+                  <div className='relative w-full h-full overflow-hidden rounded-xl'>
+                    <Image
+                      src={product.productImage}
+                      alt={product.name}
+                      fill
+                      className='object-cover'
+                      placeholder='blur'
+                      blurDataURL={BLUR_DATA_URL}
+                    />
+                  </div>
+                  <div className='absolute bottom-2 left-2 bg-white/90 px-2 py-1 rounded-full z-10'>
                     <p className='text-xs text-brand-gray font-medium'>
                       {product.category}
                     </p>
