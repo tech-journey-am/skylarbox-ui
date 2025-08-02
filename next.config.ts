@@ -1,13 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // output: "export", // Comment để dùng server mode
+  // distDir: "dist", // Comment để dùng .next default
+  // trailingSlash: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+    dirs: ["src"],
+  },
+  env: {
+    // NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  },
   images: {
-    domains: [
-      "images.unsplash.com",
-      "images.pexels.com",
-      "hebbkx1anhila5yf.public.blob.vercel-storage.com",
-    ],
+    unoptimized: true,
+    domains: ["res.cloudinary.com", "images.unsplash.com"],
   },
 };
 

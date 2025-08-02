@@ -1,151 +1,203 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Menu, X, Search, ShoppingCart, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
+import Image from "next/image";
+interface HeaderProps {
+  className?: string;
+}
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+export default function Header({ className = "" }: HeaderProps) {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
-  const navigationItems = [
-    { name: "Trang chủ", href: "/" },
-    { name: "Sản phẩm", href: "/products" },
-    { name: "Subscription", href: "/subscription" },
-    { name: "Blog", href: "/blog" },
-    { name: "Cộng đồng", href: "/community" },
-    { name: "Giới thiệu", href: "/about" },
-  ];
-
+  // Header scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsHeaderVisible(false);
+        setIsMobileMenuOpen(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsHeaderVisible(true);
+      }
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [lastScrollY]);
+
+  const addToCart = () => {
+    setCartCount((prev) => prev + 1);
+  };
 
   return (
-    <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#F5F1E8]/95 backdrop-blur-sm border-b border-[#D4B996]/20 shadow-sm"
-          : "bg-[#F5F1E8]/80"
+    <header
+      className={`bg-white/95 backdrop-blur-sm fixed top-0 inset-x-0 h-20 z-50 transition-transform duration-300 ease-in-out shadow-sm border-b border-gray-100 ${className} ${
+        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex items-center justify-between h-14 sm:h-16 md:h-18 lg:h-20'>
-          {/* Logo - Responsive sizing */}
-          <Link href='/' className='group flex-shrink-0'>
-            <span className='font-display font-bold text-lg sm:text-xl md:text-xl lg:text-2xl text-[#6B5B4F] tracking-wide hover:text-[#A67C5A] transition-colors duration-300'>
+      <div className='container mx-auto px-4 h-full'>
+        <nav className='flex items-center justify-between h-full'>
+          {/* Logo */}
+          <Link href='/' className='flex items-center space-x-2'>
+            <div className='w-12 h-12 bg-gradient-to-br from-brand-lavender to-brand-lavender rounded-lg flex items-center justify-center relative'>
+              <Image src='/logo/logo.png' fill alt='logo' className='object-contain' />
+            </div>
+            <span className='text-xl font-montserrat font-bold text-brand-brown uppercase tracking-wide'>
               SKYLARBOX
             </span>
           </Link>
 
-          {/* Desktop Navigation - Hidden on mobile/tablet */}
-          <nav className='hidden lg:flex items-center space-x-6 xl:space-x-8'>
-            {navigationItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className='text-[#8B7355] hover:text-[#A67C5A] font-medium transition-colors duration-300 relative group text-sm xl:text-base'
-              >
-                {item.name}
-                <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-[#A67C5A] transition-all duration-300 group-hover:w-full'></span>
-              </Link>
-            ))}
-          </nav>
+          {/* Desktop Menu */}
+          <div className='hidden md:flex items-center space-x-8'>
+            <Link
+              href='/about'
+              className='text-brand-gray hover:text-brand-lavender transition-colors'
+            >
+              Giới thiệu
+            </Link>
+            <Link
+              href='/products'
+              className='text-brand-gray hover:text-brand-lavender transition-colors'
+            >
+              Sản phẩm
+            </Link>
+            <Link
+              href='/subscription'
+              className='text-brand-gray hover:text-brand-lavender transition-colors'
+            >
+              Subscription
+            </Link>
+            <Link
+              href='/blog'
+              className='text-brand-gray hover:text-brand-lavender transition-colors'
+            >
+              Blog
+            </Link>
+            <Link
+              href='/community'
+              className='text-brand-gray hover:text-brand-lavender transition-colors'
+            >
+              Cộng đồng
+            </Link>
+          </div>
 
-          {/* Right Section - Icons & Mobile Menu */}
-          <div className='flex items-center space-x-2 sm:space-x-4'>
-            {/* Action Icons - Hidden on small mobile, shown on larger screens */}
-            <div className='hidden sm:flex items-center space-x-2 md:space-x-3'>
-              <button className='p-2 text-[#8B7355] hover:text-[#A67C5A] hover:bg-[#A67C5A]/10 rounded-full transition-all duration-300'>
-                <Search className='w-4 h-4 md:w-5 md:h-5' />
-                <span className='sr-only'>Tìm kiếm</span>
-              </button>
-              <button className='p-2 text-[#8B7355] hover:text-[#A67C5A] hover:bg-[#A67C5A]/10 rounded-full transition-all duration-300'>
-                <ShoppingCart className='w-4 h-4 md:w-5 md:h-5' />
-                <span className='sr-only'>Giỏ hàng</span>
-              </button>
-              <button className='p-2 text-[#8B7355] hover:text-[#A67C5A] hover:bg-[#A67C5A]/10 rounded-full transition-all duration-300'>
-                <User className='w-4 h-4 md:w-5 md:h-5' />
-                <span className='sr-only'>Tài khoản</span>
-              </button>
+          {/* Search Bar */}
+          <div className='hidden md:flex items-center space-x-4'>
+            <div className='relative'>
+              <input
+                type='text'
+                placeholder='Tìm kiếm...'
+                className='w-64 pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-lavender focus:border-transparent'
+              />
+              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4' />
             </div>
 
-            {/* Mobile Menu Button - Shown on mobile and tablet */}
-            <button
-              className='lg:hidden p-2 text-[#8B7355] hover:text-[#A67C5A] hover:bg-[#A67C5A]/10 rounded-full transition-all duration-300'
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? (
-                <X className='w-5 h-5 sm:w-6 sm:h-6' />
-              ) : (
-                <Menu className='w-5 h-5 sm:w-6 sm:h-6' />
-              )}
-              <span className='sr-only'>Menu</span>
-            </button>
+            {/* Cart & User */}
+            <div className='flex items-center space-x-3'>
+              <button className='relative p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
+                <ShoppingCart className='w-6 h-6' />
+                {cartCount > 0 && (
+                  <span className='absolute -top-1 -right-1 bg-brand-rose text-white text-xs rounded-full w-5 h-5 flex items-center justify-center'>
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+              <button className='p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
+                <User className='w-6 h-6' />
+              </button>
+            </div>
           </div>
-        </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className='md:hidden p-2'
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className='w-6 h-6 text-gray-700' />
+            ) : (
+              <Menu className='w-6 h-6 text-gray-700' />
+            )}
+          </button>
+        </nav>
       </div>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMenuOpen && (
+        {isMobileMenuOpen && (
           <motion.div
-            className='lg:hidden bg-[#F5F1E8]/98 backdrop-blur-xl border-t border-[#D4B996]/20'
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className='md:hidden bg-white border-t border-gray-100'
           >
-            <div className='container mx-auto px-4 sm:px-6 py-4 sm:py-6'>
-              {/* Navigation Links */}
-              <nav className='space-y-3 sm:space-y-4 mb-4 sm:mb-6'>
-                {navigationItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.3 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className='block text-[#8B7355] hover:text-[#A67C5A] font-medium py-2 px-4 rounded-lg hover:bg-[#A67C5A]/10 transition-all duration-300 text-base sm:text-lg'
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-
-              {/* Mobile Action Icons - Grid layout for better touch targets */}
-              <div className='grid grid-cols-3 gap-3 pt-4 border-t border-[#D4B996]/20'>
-                <button className='flex flex-col items-center p-3 text-[#8B7355] hover:text-[#A67C5A] hover:bg-[#A67C5A]/10 rounded-lg transition-all duration-300'>
-                  <Search className='w-5 h-5 mb-1' />
-                  <span className='text-xs font-medium'>Tìm kiếm</span>
-                </button>
-                <button className='flex flex-col items-center p-3 text-[#8B7355] hover:text-[#A67C5A] hover:bg-[#A67C5A]/10 rounded-lg transition-all duration-300'>
-                  <ShoppingCart className='w-5 h-5 mb-1' />
-                  <span className='text-xs font-medium'>Giỏ hàng</span>
-                </button>
-                <button className='flex flex-col items-center p-3 text-[#8B7355] hover:text-[#A67C5A] hover:bg-[#A67C5A]/10 rounded-lg transition-all duration-300'>
-                  <User className='w-5 h-5 mb-1' />
-                  <span className='text-xs font-medium'>Tài khoản</span>
-                </button>
+            <div className='px-4 py-6 space-y-4'>
+              <Link
+                href='/about'
+                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+              >
+                Giới thiệu
+              </Link>
+              <Link
+                href='/products'
+                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+              >
+                Sản phẩm
+              </Link>
+              <Link
+                href='/subscription'
+                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+              >
+                Subscription
+              </Link>
+              <Link
+                href='/blog'
+                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+              >
+                Blog
+              </Link>
+              <Link
+                href='/community'
+                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+              >
+                Cộng đồng
+              </Link>
+              <div className='pt-4 border-t border-gray-100'>
+                <div className='relative mb-4'>
+                  <input
+                    type='text'
+                    placeholder='Tìm kiếm...'
+                    className='w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-lavender'
+                  />
+                  <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4' />
+                </div>
+                <div className='flex items-center space-x-3'>
+                  <button className='relative p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
+                    <ShoppingCart className='w-6 h-6' />
+                    {cartCount > 0 && (
+                      <span className='absolute -top-1 -right-1 bg-brand-rose text-white text-xs rounded-full w-5 h-5 flex items-center justify-center'>
+                        {cartCount}
+                      </span>
+                    )}
+                  </button>
+                  <button className='p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
+                    <User className='w-6 h-6' />
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
-};
-
-export default Header;
+}
