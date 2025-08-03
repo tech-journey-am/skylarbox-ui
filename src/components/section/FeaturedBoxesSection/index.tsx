@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { BLUR_DATA_URL } from "@/components/constants";
 import { BoxCardSkeleton } from "@/components/ui/Skeleton";
 import { useMultipleDemoLoading } from "@/hooks/useDemoLoading";
+import ProductImageCard from "@/components/ui/ProductImageCard";
 
 const featuredBoxes = [
   {
@@ -12,42 +11,54 @@ const featuredBoxes = [
     description: "Hộp chủ đề kintsugi - nghệ thuật chữa lành vết nứt bằng vàng",
     price: "599.000đ",
     color: "bg-gradient-to-br from-brand-rose/20 to-brand-rose/40",
-    image: "/images/box/box_1.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/box_1.png",
+    giftIcon: "✨",
   },
   {
     name: "Ngày dịu dàng",
     description: "Tone màu pastel nhẹ nhàng cho những ngày cần sự dịu dàng",
     price: "549.000đ",
     color: "bg-gradient-to-br from-brand-lavender/20 to-brand-lavender/40",
-    image: "/images/box/box_2.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/box_2.png",
+    giftIcon: "🌸",
   },
   {
     name: "Tìm lại chính mình",
     description: "Thiết kế minimalist giúp bạn kết nối với bản thân",
     price: "649.000đ",
     color: "bg-gradient-to-br from-brand-cream to-brand-cream/80",
-    image: "/images/box/box_3.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/box_3.png",
+    giftIcon: "🧘",
   },
   {
     name: "Hãy tha thứ",
     description: "Lá thư và nến thơm giúp bạn buông bỏ và tha thứ",
     price: "499.000đ",
     color: "bg-gradient-to-br from-brand-sky/20 to-brand-sky/40",
-    image: "/images/box/box_4.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/box_4.png",
+    giftIcon: "🕊️",
   },
   {
     name: "Thanh lọc năng lượng",
     description: "Các yếu tố thiên nhiên giúp thanh lọc tâm hồn",
     price: "699.000đ",
     color: "bg-gradient-to-br from-brand-sage/20 to-brand-sage/40",
-    image: "/images/box/box_5.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/box_5.png",
+    giftIcon: "🌿",
   },
   {
     name: "May mắn",
     description: "Thiết kế rực rỡ mang lại may mắn và niềm vui",
     price: "599.000đ",
     color: "bg-gradient-to-br from-brand-yellow/20 to-brand-yellow/40",
-    image: "/images/box/box_6.png",
+    giftImage: "/images/box/demo.png",
+    productImage: "/images/box/box_6.png",
+    giftIcon: "🍀",
   },
 ];
 
@@ -78,35 +89,23 @@ export default function FeaturedBoxesSection() {
             >
               {!isItemLoaded(index) && <BoxCardSkeleton />}
               <div
-                className={`${
-                  box.color
-                } rounded-2xl p-6 h-80 relative overflow-hidden transition-transform group-hover:scale-105 ${
+                className={`rounded-2xl h-96 relative overflow-hidden transition-transform group-hover:scale-105 ${
                   !isItemLoaded(index) ? "hidden" : "block"
                 }`}
               >
-                <div className='absolute inset-0 flex items-center justify-center'>
-                  <div className='text-center'>
-                    <div className='relative w-32 h-32 mx-auto mb-4'>
-                      <Image
-                        src={box.image}
-                        alt={box.name}
-                        fill
-                        className='object-contain rounded-lg'
-                        placeholder='blur'
-                        blurDataURL={BLUR_DATA_URL}
-                      />
-                    </div>
-                    <h3 className='text-xl font-semibold text-brand-brown mb-2'>
-                      {box.name}
-                    </h3>
-                    <p className='text-brand-gray text-sm mb-4'>
-                      {box.description}
-                    </p>
-                    <p className='text-2xl font-bold text-brand-lavender'>
-                      {box.price}
-                    </p>
-                  </div>
-                </div>
+                <ProductImageCard
+                  giftImage={box.giftImage}
+                  productImage={box.productImage}
+                  giftIcon={box.giftIcon}
+                  alt={box.name}
+                  className='w-full h-full'
+                  showDetails={true}
+                  giftTitle={`${box.name} - ${box.price}`}
+                  giftSubtitle={box.description}
+                  productTitle={`${box.name} - ${box.price}`}
+                  productSubtitle={box.description}
+                  isHoverToOpen={false}
+                />
               </div>
             </motion.div>
           ))}
