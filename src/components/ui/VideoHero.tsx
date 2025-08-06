@@ -61,59 +61,91 @@ export default function VideoHero({
   };
 
   return (
-    <section className='relative h-screen overflow-hidden group'>
+    <section className="relative h-screen overflow-hidden group">
       {/* Video Background */}
-      <AnimatePresence mode='wait'>
+      <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
           initial={{ opacity: 0.3 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0.3 }}
           transition={{ duration: 1 }}
-          className='absolute inset-0'
+          className="absolute inset-0"
         >
           <video
             autoPlay
             muted
             loop
             playsInline
-            className='w-full h-full object-cover'
+            className="w-full h-full object-cover"
           >
-            <source src={slides[currentSlide].video} type='video/mp4' />
+            <source src={slides[currentSlide].video} type="video/mp4" />
           </video>
 
           {/* Overlay */}
-          <div className='absolute inset-0 bg-black/40' />
+          <div className="absolute inset-0 bg-black/40" />
         </motion.div>
       </AnimatePresence>
 
       {/* Content - Only show for first slide */}
       {slides[currentSlide].showText && (
-        <div className='relative z-10 h-full flex items-center'>
-          <div className='container mx-auto px-4'>
-            <AnimatePresence mode='wait'>
+        <div className="relative z-10 h-full flex items-center">
+          <div className="container mx-auto px-4">
+            <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
                 initial={{ opacity: 0.3, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0.3, y: -50 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className='max-w-4xl text-white'
+                className="max-w-4xl text-white"
               >
-                <h1 className='text-5xl md:text-7xl hero-title mb-6 leading-tight'>
+                <h1
+                  className="hero-title mb-6 leading-tight"
+                  style={{
+                    fontSize: "4.5vw",
+                    lineHeight: "1.1",
+                  }}
+                >
                   {slides[currentSlide].title}
                 </h1>
-                <h2 className='text-2xl md:text-3xl hero-subtitle mb-4 text-brand-lavender'>
+                <h2
+                  className="hero-subtitle mb-4 text-brand-lavender"
+                  style={{
+                    fontSize: "2vw",
+                    lineHeight: "1.3",
+                  }}
+                >
                   {slides[currentSlide].subtitle}
                 </h2>
-                <p className='text-lg md:text-xl text-gray-200 mb-8 max-w-2xl hero-description'>
+                <p
+                  className="text-gray-200 mb-8 max-w-2xl hero-description"
+                  style={{
+                    fontSize: "1.2vw",
+                    lineHeight: "1.6",
+                  }}
+                >
                   {slides[currentSlide].description}
                 </p>
-                <div className='flex flex-col sm:flex-row gap-4'>
-                  <button className='btn-cta text-lg px-8 py-4'>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button
+                    className="btn-cta"
+                    style={{
+                      fontSize: "1vw",
+                      padding: "0.8vw 1.5vw",
+                      borderRadius: "1.5vw",
+                    }}
+                  >
                     Khám phá ngay
                   </button>
-                  <button className='btn-cta-secondary text-lg px-8 py-4'>
+                  <button
+                    className="btn-cta-secondary"
+                    style={{
+                      fontSize: "1vw",
+                      padding: "0.8vw 1.5vw",
+                      borderRadius: "1.5vw",
+                    }}
+                  >
                     Tham gia cộng đồng
                   </button>
                 </div>
@@ -125,19 +157,28 @@ export default function VideoHero({
 
       {/* Navigation Buttons - Horizontal Bar Style */}
       {showNavigation && (
-        <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20'>
-          <div className='flex gap-3 bg-white/10 backdrop-blur-md rounded-full px-4 py-2'>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <div
+            className="flex gap-3 bg-white/10 backdrop-blur-md rounded-full"
+            style={{ padding: "0.6vw 1.2vw" }}
+          >
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-12 h-12 rounded-full transition-all duration-300 flex items-center justify-center ${
+                className={`rounded-full transition-all duration-300 flex items-center justify-center ${
                   index === currentSlide
                     ? "bg-white text-black shadow-lg"
                     : "bg-white/20 text-white hover:bg-white/40"
                 }`}
+                style={{
+                  width: "2.5vw",
+                  height: "2.5vw",
+                  fontSize: "0.8vw",
+                  fontWeight: "600",
+                }}
               >
-                <span className='text-sm font-semibold'>{index + 1}</span>
+                <span>{index + 1}</span>
               </button>
             ))}
           </div>
@@ -149,38 +190,50 @@ export default function VideoHero({
         <>
           <button
             onClick={prevSlide}
-            className='absolute left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100'
+            className="absolute top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+            style={{
+              left: "1.5vw",
+              padding: "0.8vw",
+              width: "3vw",
+              height: "3vw",
+            }}
           >
             <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              style={{ width: "1.2vw", height: "1.2vw" }}
             >
               <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 strokeWidth={2}
-                d='M15 19l-7-7 7-7'
+                d="M15 19l-7-7 7-7"
               />
             </svg>
           </button>
 
           <button
             onClick={nextSlide}
-            className='absolute right-8 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100'
+            className="absolute top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+            style={{
+              right: "1.5vw",
+              padding: "0.8vw",
+              width: "3vw",
+              height: "3vw",
+            }}
           >
             <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              style={{ width: "1.2vw", height: "1.2vw" }}
             >
               <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 strokeWidth={2}
-                d='M9 5l7 7-7 7'
+                d="M9 5l7 7-7 7"
               />
             </svg>
           </button>
@@ -189,9 +242,12 @@ export default function VideoHero({
 
       {/* Progress Bar */}
       {showProgress && (
-        <div className='absolute bottom-0 left-0 right-0 h-1 bg-white/20'>
+        <div
+          className="absolute bottom-0 left-0 right-0 bg-white/20"
+          style={{ height: "0.3vw" }}
+        >
           <motion.div
-            className='h-full bg-white'
+            className="h-full bg-white"
             initial={{ width: 0 }}
             animate={{ width: isAutoPlaying ? "100%" : "0%" }}
             transition={{
@@ -203,3 +259,4 @@ export default function VideoHero({
     </section>
   );
 }
+
