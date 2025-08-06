@@ -12,46 +12,30 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div
-        className="bg-white rounded-lg shadow-lg w-full relative"
-        style={{ padding: "2vw", maxWidth: "25vw" }}
-      >
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
         <button
-          className="absolute text-gray-500 hover:text-gray-800"
-          style={{
-            top: "0.5vw",
-            right: "0.5vw",
-            fontSize: "clamp(22px, 2vw, 2.5rem)",
-          }}
+          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl"
           onClick={onClose}
         >
           ×
         </button>
-        <div className="flex justify-center" style={{ marginBottom: "1.5vw" }}>
+        <div className="flex justify-center mb-6">
           <button
-            className={`font-semibold rounded-l ${
+            className={`px-4 py-2 font-semibold rounded-l ${
               tab === "login"
                 ? "bg-blue-800 text-white"
                 : "bg-gray-100 text-gray-700"
             }`}
-            style={{
-              padding: "0.5vw 1vw",
-              fontSize: "clamp(16px, 1vw, 1.25rem)",
-            }}
             onClick={() => setTab("login")}
           >
             Sign In
           </button>
           <button
-            className={`font-semibold rounded-r ${
+            className={`px-4 py-2 font-semibold rounded-r ${
               tab === "register"
                 ? "bg-blue-800 text-white"
                 : "bg-gray-100 text-gray-700"
             }`}
-            style={{
-              padding: "0.5vw 1vw",
-              fontSize: "clamp(16px, 1vw, 1.25rem)",
-            }}
             onClick={() => setTab("register")}
           >
             Register
@@ -62,40 +46,20 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
             <input
               type="email"
               placeholder="Email"
-              className="w-full border rounded"
-              style={{
-                padding: "0.5vw 0.75vw",
-                marginBottom: "0.75vw",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
+              className="w-full border rounded px-3 py-2 mb-3"
             />
             <input
               type="password"
               placeholder="Password"
-              className="w-full border rounded"
-              style={{
-                padding: "0.5vw 0.75vw",
-                marginBottom: "0.75vw",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
+              className="w-full border rounded px-3 py-2 mb-3"
             />
             <button
               type="submit"
-              className="w-full bg-blue-800 text-white rounded hover:bg-blue-700"
-              style={{
-                padding: "0.5vw 0",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
+              className="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-700"
             >
               Sign In
             </button>
-            <div
-              className="text-center"
-              style={{
-                marginTop: "1vw",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
-            >
+            <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
               <span
                 className="text-blue-700 underline cursor-pointer"
@@ -110,50 +74,25 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
             <input
               type="text"
               placeholder="Full Name"
-              className="w-full border rounded"
-              style={{
-                padding: "0.5vw 0.75vw",
-                marginBottom: "0.75vw",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
+              className="w-full border rounded px-3 py-2 mb-3"
             />
             <input
               type="email"
               placeholder="Email"
-              className="w-full border rounded"
-              style={{
-                padding: "0.5vw 0.75vw",
-                marginBottom: "0.75vw",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
+              className="w-full border rounded px-3 py-2 mb-3"
             />
             <input
               type="password"
               placeholder="Password"
-              className="w-full border rounded"
-              style={{
-                padding: "0.5vw 0.75vw",
-                marginBottom: "0.75vw",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
+              className="w-full border rounded px-3 py-2 mb-3"
             />
             <button
               type="submit"
-              className="w-full bg-blue-800 text-white rounded hover:bg-blue-700"
-              style={{
-                padding: "0.5vw 0",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
+              className="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-700"
             >
               Register
             </button>
-            <div
-              className="text-center"
-              style={{
-                marginTop: "1vw",
-                fontSize: "clamp(16px, 1vw, 1.25rem)",
-              }}
-            >
+            <div className="mt-4 text-center text-sm">
               Already have an account?{" "}
               <span
                 className="text-blue-700 underline cursor-pointer"

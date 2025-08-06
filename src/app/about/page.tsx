@@ -1,289 +1,345 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import { Heart, Users, Target, Award } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
-const AboutPage = () => {
+export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-cream to-brand-sky/30">
+    <div className='min-h-screen bg-gradient-to-br from-brand-cream to-brand-sky/30'>
+      <Header />
+
       {/* Hero Section */}
-      <section className="pt-20 pb-12" style={{ padding: "5vw 0 3vw 0" }}>
-        <div className="container mx-auto" style={{ padding: "0 1vw" }}>
+      <section className='pb-20 pt-32 bg-gradient-to-br from-brand-cream to-brand-sky/20'>
+        <div className='container mx-auto px-4'>
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
-            style={{ maxWidth: "75vw", margin: "0 auto" }}
+            className='text-center max-w-4xl mx-auto'
           >
-            <h1 className="font-bold mb-6" style={{ fontSize: "clamp(28px, 2.5vw, 3.5rem)", marginBottom: "1.5vw" }}>
-              Về Skylarbox
+            <h1 className='text-4xl md:text-6xl font-montserrat font-medium text-brand-brown mb-6 leading-tight'>
+              Câu chuyện của{" "}
+              <span className='text-brand-lavender'>Skylarbox</span>
             </h1>
-            <p className="text-brand-gray leading-relaxed" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-              Chúng tôi là một thương hiệu chuyên về các sản phẩm chữa lành tâm hồn, 
-              được thiết kế để mang lại sự bình yên và ấm áp cho mọi người. 
-              Với sứ mệnh lan tỏa tình yêu thương, chúng tôi mong muốn tạo ra 
-              những trải nghiệm chữa lành độc đáo và ý nghĩa.
+            <p className='text-xl text-brand-gray mb-8 leading-relaxed'>
+              Mỗi người tìm bình yên theo cách riêng
             </p>
+            <div className='w-24 h-24 bg-gradient-to-br from-brand-lavender/30 to-brand-yellow/30 rounded-full flex items-center justify-center mx-auto mb-8'>
+              <span className='text-4xl'>🌸</span>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-12" style={{ padding: "3vw 0" }}>
-        <div className="container mx-auto" style={{ padding: "0 1vw" }}>
-          <div className="grid md:grid-cols-2 gap-12" style={{ gap: "3vw" }}>
+      {/* Story Section */}
+      <section className='py-20 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-4xl mx-auto'>
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-            >
-              <h2 className="font-bold mb-6" style={{ fontSize: "clamp(22px, 2vw, 2.5rem)", marginBottom: "1.5vw" }}>
-                Sứ mệnh của chúng tôi
-              </h2>
-              <p className="text-brand-gray mb-6" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)", marginBottom: "1.5vw" }}>
-                Skylarbox được thành lập với sứ mệnh mang lại ánh sáng và hy vọng 
-                cho những người đang gặp khó khăn trong cuộc sống. Chúng tôi tin rằng 
-                mỗi sản phẩm không chỉ là một món quà vật chất, mà còn là một 
-                thông điệp yêu thương và sự quan tâm.
-              </p>
-              <p className="text-brand-gray" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-                Thông qua dự án "Thắp Sáng", chúng tôi đã và đang lan tỏa tình yêu 
-                thương đến nhiều vùng đất khác nhau, mang lại niềm vui và hy vọng 
-                cho những người cần sự hỗ trợ.
-              </p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-lg p-8"
-              style={{ padding: "2vw" }}
+              className='mb-16'
             >
-              <div className="space-y-6" style={{ gap: "1.5vw" }}>
-                <div className="flex items-start gap-4" style={{ gap: "1vw" }}>
-                  <div className="flex-shrink-0" style={{ width: "3vw", height: "3vw", minWidth: "48px", minHeight: "48px" }}>
-                    <Heart className="w-full h-full text-brand-lavender" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2" style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "0.5vw" }}>
-                      Chữa lành tâm hồn
-                    </h3>
-                    <p className="text-brand-gray" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-                      Mỗi sản phẩm được chọn lọc kỹ lưỡng để mang lại cảm giác bình yên.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4" style={{ gap: "1vw" }}>
-                  <div className="flex-shrink-0" style={{ width: "3vw", height: "3vw", minWidth: "48px", minHeight: "48px" }}>
-                    <Users className="w-full h-full text-brand-lavender" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2" style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "0.5vw" }}>
-                      Kết nối cộng đồng
-                    </h3>
-                    <p className="text-brand-gray" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-                      Xây dựng một cộng đồng yêu thương và hỗ trợ lẫn nhau.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4" style={{ gap: "1vw" }}>
-                  <div className="flex-shrink-0" style={{ width: "3vw", height: "3vw", minWidth: "48px", minHeight: "48px" }}>
-                    <Target className="w-full h-full text-brand-lavender" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2" style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "0.5vw" }}>
-                      Lan tỏa yêu thương
-                    </h3>
-                    <p className="text-brand-gray" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-                      Mỗi hành động nhỏ đều có thể tạo ra sự thay đổi lớn.
-                    </p>
-                  </div>
-                </div>
+              <h2 className='text-3xl md:text-4xl font-montserrat font-medium text-brand-brown mb-8 text-center'>
+                Câu chuyện ra đời của Skylarbox
+              </h2>
+              <div className='bg-gradient-to-br from-brand-lavender/10 to-brand-yellow/10 rounded-2xl p-8 mb-8'>
+                <blockquote className='text-xl text-brand-brown italic text-center font-medium'>
+                  "Leave the world a better place when you leave it."
+                </blockquote>
+              </div>
+              <div className='space-y-6 text-brand-gray leading-relaxed'>
+                <p>
+                  Có một câu nói đã chạm đến trái tim chúng tôi và trở thành
+                  nguồn cảm hứng để Skylarbox ra đời.
+                </p>
+                <p>
+                  Từ câu nói ấy, chúng tôi thấy rõ một chân lý giản dị nhưng sâu
+                  sắc: mỗi người chúng ta – dù là ai, dù ở đâu – đều có thể góp
+                  phần tạo nên một thế giới tốt đẹp hơn bằng cách riêng của
+                  mình. Và con đường để đến được điều đó, chúng tôi tin rằng,
+                  bắt đầu từ chính bên trong mỗi người – từ sự chữa lành và bình
+                  an nội tại.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Mission Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className='mb-16'
+            >
+              <h3 className='text-2xl md:text-3xl font-montserrat font-medium text-brand-brown mb-6'>
+                Sứ mệnh mà chúng tôi ôm ấp
+              </h3>
+              <div className='bg-gradient-to-br from-brand-sage/10 to-brand-cream rounded-2xl p-8 mb-6'>
+                <p className='text-lg text-brand-brown font-medium mb-4'>
+                  ✨ Một con người bình an sẽ tạo ra một thế giới bình an.
+                </p>
+                <p className='text-brand-gray leading-relaxed'>
+                  Khi một người tìm được sự yên ổn trong tâm hồn, họ sẽ lan tỏa
+                  năng lượng tích cực đến những người xung quanh. Và khi nhiều
+                  người cùng bình an như vậy, thế giới sẽ tự nhiên trở nên nhiều
+                  hòa bình hơn, yêu thương hơn, lành mạnh hơn – từ sâu bên trong
+                  lan rộng ra ngoài.
+                </p>
+              </div>
+              <div className='space-y-4 text-brand-gray leading-relaxed'>
+                <p>
+                  Chữa lành, trong quan niệm của chúng tôi, không nhất thiết
+                  phải gắn liền với những điều lớn lao cần chữa lành. Đôi khi,
+                  nó nhẹ nhàng như việc bạn chọn buông bỏ những suy nghĩ không
+                  tích cực đang làm phiền, hay đơn giản chỉ là làm sạch lại năng
+                  lượng của mình sau một ngày đầy bận rộn.
+                </p>
+                <p>
+                  Chữa lành, nhiều lúc, chỉ là giúp bản thân trở nên lành mạnh
+                  hơn từng ngày một cách nhẹ nhàng nhất.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Why We Exist */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className='mb-16'
+            >
+              <h3 className='text-2xl md:text-3xl font-montserrat font-medium text-brand-brown mb-6'>
+                Lý do chúng tôi tồn tại
+              </h3>
+              <div className='bg-gradient-to-br from-brand-yellow/10 to-brand-rose/10 rounded-2xl p-8 mb-6'>
+                <p className='text-lg text-brand-brown font-medium mb-4'>
+                  "Be the change you wish to see in the world."
+                </p>
+              </div>
+              <div className='space-y-4 text-brand-gray leading-relaxed'>
+                <p>
+                  Skylarbox được nuôi dưỡng bởi một niềm tin khác, cũng không
+                  kém phần ý nghĩa.
+                </p>
+                <p>
+                  Chúng tôi không ôm mộng thay đổi cả thế giới – điều đó quá lớn
+                  lao và không thực tế. Thay vào đó, chúng tôi chỉ mong được là
+                  một người bạn nhỏ bé, đồng hành cùng bạn trong hành trình học
+                  cách dịu dàng hơn với chính mình.
+                </p>
+                <p>
+                  Bởi vì chúng tôi tin rằng, khi bạn bắt đầu yêu thương và chăm
+                  sóc bản thân một cách chân thành, từ chính bạn – một thế giới
+                  đẹp hơn sẽ âm thầm bắt đầu. Và đó chính là lý do Skylarbox tồn
+                  tại: để được là một phần nhỏ trong câu chuyện tuyệt đẹp ấy của
+                  bạn.
+                </p>
+              </div>
+              <div className='bg-gradient-to-br from-brand-lavender/10 to-brand-sky/10 rounded-2xl p-6 mt-8'>
+                <blockquote className='text-lg text-brand-brown italic text-center'>
+                  "Hành trình chữa lành không bao giờ là cuộc đua, mà là một câu
+                  chuyện dịu dàng mà bạn kể cho chính mình mỗi ngày" - Skylarbox
+                  Founder.
+                </blockquote>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-12 bg-white" style={{ padding: "3vw 0" }}>
-        <div className="container mx-auto" style={{ padding: "0 1vw" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-            style={{ marginBottom: "4vw" }}
-          >
-            <h2 className="font-bold mb-4" style={{ fontSize: "clamp(22px, 2vw, 2.5rem)", marginBottom: "1vw" }}>
-              Giá trị cốt lõi
-            </h2>
-            <p className="text-brand-gray" style={{ maxWidth: "50vw", margin: "0 auto", fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-              Những giá trị định hình nên con người và văn hóa Skylarbox
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3" style={{ gap: "2vw" }}>
-            {[
-              {
-                icon: "💝",
-                title: "Tình yêu thương",
-                description: "Chúng tôi tin rằng tình yêu thương là nền tảng của mọi sự chữa lành."
-              },
-              {
-                icon: "🌟",
-                title: "Sự sáng tạo",
-                description: "Mỗi sản phẩm đều được thiết kế với sự sáng tạo và tâm huyết."
-              },
-              {
-                icon: "🤝",
-                title: "Tinh thần cộng đồng",
-                description: "Chúng tôi tin vào sức mạnh của cộng đồng và sự hỗ trợ lẫn nhau."
-              }
-            ].map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-brand-lavender/20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ width: "4vw", height: "4vw", minWidth: "64px", minHeight: "64px", marginBottom: "1vw" }}>
-                  <span className="text-2xl" style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}>
-                    {value.icon}
-                  </span>
-                </div>
-                <h3 className="font-semibold mb-2" style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "0.5vw" }}>
-                  {value.title}
-                </h3>
-                <p className="text-brand-gray" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-12" style={{ padding: "3vw 0" }}>
-        <div className="container mx-auto" style={{ padding: "0 1vw" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-            style={{ marginBottom: "4vw" }}
-          >
-            <h2 className="font-bold mb-4" style={{ fontSize: "clamp(22px, 2vw, 2.5rem)", marginBottom: "1vw" }}>
-              Đội ngũ của chúng tôi
-            </h2>
-            <p className="text-brand-gray" style={{ maxWidth: "50vw", margin: "0 auto", fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-              Những con người đam mê và tận tâm đằng sau Skylarbox
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3" style={{ gap: "2vw" }}>
-            {[
-              {
-                name: "Nguyễn Thị Anh",
-                role: "Founder & CEO",
-                description: "Người sáng lập với tầm nhìn về một thế giới đầy yêu thương."
-              },
-              {
-                name: "Trần Văn Bình",
-                role: "Creative Director",
-                description: "Chịu trách nhiệm thiết kế các sản phẩm chữa lành độc đáo."
-              },
-              {
-                name: "Lê Thị Cẩm",
-                role: "Community Manager",
-                description: "Xây dựng và kết nối cộng đồng Skylarbox."
-              }
-            ].map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg p-6 text-center"
-                style={{ padding: "1.5vw" }}
-              >
-                <div className="w-20 h-20 bg-brand-lavender/20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ width: "5vw", height: "5vw", minWidth: "80px", minHeight: "80px", marginBottom: "1vw" }}>
-                  <Award className="w-10 h-10 text-brand-lavender" style={{ width: "2.5vw", height: "2.5vw", minWidth: "40px", minHeight: "40px" }} />
-                </div>
-                <h3 className="font-semibold mb-1" style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "0.25vw" }}>
-                  {member.name}
-                </h3>
-                <p className="text-brand-lavender mb-3" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)", marginBottom: "0.75vw" }}>
-                  {member.role}
-                </p>
-                <p className="text-brand-gray" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-                  {member.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Future Section */}
-      <section className="py-12 bg-white" style={{ padding: "3vw 0" }}>
-        <div className="container mx-auto" style={{ padding: "0 1vw" }}>
-          <div className="text-center" style={{ maxWidth: "75vw", margin: "0 auto" }}>
-            <motion.h2
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="font-bold mb-6"
-              style={{ fontSize: "clamp(22px, 2vw, 2.5rem)", marginBottom: "1.5vw" }}
-            >
-              Tương lai của Skylarbox
-            </h2>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-brand-gray mb-8"
-              style={{ fontSize: "clamp(16px, 1vw, 1.25rem)", marginBottom: "2vw" }}
-            >
-              Chúng tôi đang phát triển để mang đến nhiều sản phẩm chữa lành hơn nữa, 
-              mở rộng cộng đồng và lan tỏa tình yêu thương đến nhiều nơi hơn. 
-              Hãy cùng chúng tôi xây dựng một thế giới đầy ấm áp và yêu thương.
-            </motion.p>
+      {/* Core Values */}
+      <section className='py-20 bg-gradient-to-br from-brand-sage/10 to-brand-cream'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-6xl mx-auto'>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              className='text-center mb-16'
             >
-              <Link href="/subscription">
-                <Button className="bg-brand-lavender hover:bg-brand-lavender/90" style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}>
-                  Đăng ký subscription
-                </Button>
-              </Link>
+              <h2 className='text-3xl md:text-4xl font-montserrat font-medium text-brand-brown mb-6'>
+                Giá trị cốt lõi của Skylarbox
+              </h2>
+            </motion.div>
+
+            <div className='grid md:grid-cols-2 gap-8'>
+              {/* Authenticity */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className='bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow'
+              >
+                <div className='w-16 h-16 bg-gradient-to-br from-brand-lavender/20 to-brand-lavender/40 rounded-full flex items-center justify-center mb-6'>
+                  <span className='text-2xl'>💎</span>
+                </div>
+                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                  Nguyên bản – Authenticity
+                </h3>
+                <p className='text-brand-gray leading-relaxed'>
+                  Chúng tôi tin rằng sự chân thật có một sức mạnh rất riêng –
+                  nhẹ nhàng mà sâu sắc. Skylarbox không cố gắng trở nên hoàn hảo
+                  hay màu mè. Mỗi hộp quà, mỗi thông điệp đều được tạo ra từ
+                  những gì thật nhất.
+                </p>
+              </motion.div>
+
+              {/* Gentle */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className='bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow'
+              >
+                <div className='w-16 h-16 bg-gradient-to-br from-brand-rose/20 to-brand-rose/40 rounded-full flex items-center justify-center mb-6'>
+                  <span className='text-2xl'>🌸</span>
+                </div>
+                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                  Dịu dàng – Gentle
+                </h3>
+                <p className='text-brand-gray leading-relaxed'>
+                  Skylarbox được sinh ra từ mong muốn: "Giá mà ai đó có thể dịu
+                  dàng hơn với mình…" Và rồi, chúng tôi chọn trở thành "ai đó"
+                  ấy – trong một chiếc nến ấm áp, một thẻ bài nhỏ xinh, một lá
+                  thư tràn đầy yêu thương.
+                </p>
+              </motion.div>
+
+              {/* Vibrant */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
+                className='bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow'
+              >
+                <div className='w-16 h-16 bg-gradient-to-br from-brand-yellow/20 to-brand-yellow/40 rounded-full flex items-center justify-center mb-6'>
+                  <span className='text-2xl'>✨</span>
+                </div>
+                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                  Sống động – Real & Vibrant
+                </h3>
+                <p className='text-brand-gray leading-relaxed'>
+                  Chữa lành không nhất thiết phải lặng lẽ hay đơn điệu. Với
+                  Skylarbox, hành trình tìm về bình an cũng có thể rực rỡ, sáng
+                  tạo, đầy màu sắc – như chính cuộc sống đang diễn ra xung quanh
+                  chúng ta mỗi ngày.
+                </p>
+              </motion.div>
+
+              {/* Healing */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                viewport={{ once: true }}
+                className='bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow'
+              >
+                <div className='w-16 h-16 bg-gradient-to-br from-brand-sage/20 to-brand-sage/40 rounded-full flex items-center justify-center mb-6'>
+                  <span className='text-2xl'>🌿</span>
+                </div>
+                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                  Lành – Healing
+                </h3>
+                <p className='text-brand-gray leading-relaxed'>
+                  "Lành" không phải là đã hoàn toàn ổn, mà là đang nhẹ lại từng
+                  chút một mỗi ngày. Skylarbox ở đây để nhắc bạn một điều quan
+                  trọng: bạn không cần phải hoàn hảo mới xứng đáng với bình yên.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Message Section */}
+      <section className='py-20 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-4xl mx-auto'>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className='text-center'
+            >
+              <div className='w-20 h-20 bg-gradient-to-br from-brand-lavender/30 to-brand-yellow/30 rounded-full flex items-center justify-center mx-auto mb-8'>
+                <span className='text-3xl'>☁️</span>
+              </div>
+              <h2 className='text-2xl md:text-3xl font-montserrat font-medium text-brand-brown mb-8'>
+                Một lời nhắn nhỏ từ Skylarbox
+              </h2>
+              <div className='space-y-6 text-brand-gray leading-relaxed text-lg'>
+                <p>
+                  Mỗi người đều có những cách riêng để tìm về sự bình yên trong
+                  lòng.
+                </p>
+                <p>
+                  Skylarbox không mang đến phép màu, cũng không vội vã thay đổi
+                  bạn. Chúng tôi chỉ hy vọng, khi bạn mở chiếc hộp này – bạn sẽ
+                  thấy dịu lại một chút, thấy dễ thở hơn một chút, và thấy lòng
+                  mình đủ ấm để bước tiếp – dù chỉ là một bước nhỏ.
+                </p>
+                <p>
+                  Bởi vì đôi khi, những điều nhỏ nhất lại có sức mạnh lớn nhất.
+                </p>
+                <p>
+                  Một thế giới lành mạnh hơn bắt đầu từ những điều rất nhẹ
+                  nhàng. Như cách bạn chọn yêu thương chính mình, ngay từ hôm
+                  nay.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className='py-20 bg-gradient-to-br from-brand-lavender/10 to-brand-rose/10'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-2xl mx-auto text-center'>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className='text-3xl md:text-4xl font-montserrat font-medium text-brand-brown mb-6'>
+                Bắt đầu hành trình của bạn
+              </h2>
+              <p className='text-brand-gray mb-8 text-lg'>
+                Khám phá các hộp quà chữa lành và tìm thấy bình yên theo cách
+                riêng của mình
+              </p>
+              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                <Link
+                  href='/products'
+                  className='bg-brand-rose text-white px-8 py-3 rounded-full hover:bg-brand-rose/90 transition-colors font-medium'
+                >
+                  Khám phá sản phẩm
+                </Link>
+                <Link
+                  href='/'
+                  className='border-2 border-brand-lavender text-brand-lavender px-8 py-3 rounded-full hover:bg-brand-lavender/10 transition-colors font-medium'
+                >
+                  Về trang chủ
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
-};
-
-export default AboutPage;
-
+}

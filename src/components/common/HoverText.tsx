@@ -26,8 +26,7 @@ const HoverText = ({
 
   return (
     <div
-      className={`relative w-full overflow-hidden cursor-pointer flex items-center justify-center ${classContainer}`}
-      style={{ height: "1.171875vw", fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+      className={`relative text-sm w-full h-[18.75px] overflow-hidden cursor-pointer flex items-center justify-center ${classContainer}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -54,4 +53,3 @@ const HoverText = ({
 };
 
 export default HoverText;
-

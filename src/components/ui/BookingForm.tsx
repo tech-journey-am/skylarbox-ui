@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 const BookingForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -11,57 +9,33 @@ const BookingForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center w-full bg-blue-50 rounded-lg text-zinc-800"
-      style={{ padding: "1.5vw", marginTop: "2vw" }}
+      className='flex flex-col justify-center p-6 mt-8 w-full bg-blue-50 rounded-lg text-zinc-800 max-md:px-5 max-md:max-w-full'
     >
       <div className={`w-full `}>
-        <label
-          className="font-medium text-zinc-800"
-          style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
-        >
+        <label className='text-lg font-medium text-zinc-800'>
           Organized Group Tour
         </label>
-        <div
-          className="flex flex-col justify-center w-full bg-white rounded"
-          style={{
-            padding: "0.875vw 1vw",
-            marginTop: "0.25vw",
-            fontSize: "clamp(16px, 1vw, 1.25rem)",
-          }}
-        >
-          <div className="opacity-50 text-zinc-800">Single Customized Trip</div>
+        <div className='flex flex-col justify-center py-3.5 pl-4 mt-1 w-full text-sm bg-white rounded max-md:max-w-full'>
+          <div className='opacity-50 text-zinc-800 max-md:max-w-full'>
+            Single Customized Trip
+          </div>
         </div>
       </div>
 
-      <div className={`w-full`} style={{ marginTop: "1.5vw" }}>
-        <label
-          className="font-medium text-zinc-800"
-          style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
-        >
+      <div className={`w-full mt-6`}>
+        <label className='text-lg font-medium text-zinc-800'>
           Organized Group Tour
         </label>
-        <div
-          className="flex flex-col justify-center w-full bg-white rounded"
-          style={{
-            padding: "0.875vw 1vw",
-            marginTop: "0.25vw",
-            fontSize: "clamp(16px, 1vw, 1.25rem)",
-          }}
-        >
-          <div className="opacity-50 text-zinc-800">Single Customized Trip</div>
+        <div className='flex flex-col justify-center py-3.5 pl-4 mt-1 w-full text-sm bg-white rounded max-md:max-w-full'>
+          <div className='opacity-50 text-zinc-800 max-md:max-w-full'>
+            Single Customized Trip
+          </div>
         </div>
       </div>
 
       <button
-        type="submit"
-        className="overflow-hidden self-start text-center text-white whitespace-nowrap bg-blue-800 rounded hover:bg-blue-900 transition-colors"
-        style={{
-          gap: "0.375vw",
-          padding: "0.5vw 1.25vw",
-          marginTop: "1.5vw",
-          fontSize: "clamp(16px, 1vw, 1.25rem)",
-          lineHeight: "1.5",
-        }}
+        type='submit'
+        className='overflow-hidden gap-1.5 self-start px-5 py-2 mt-6 text-xs leading-loose text-center text-white whitespace-nowrap bg-blue-800 rounded hover:bg-blue-900 transition-colors'
       >
         Submit
       </button>
@@ -70,4 +44,3 @@ const BookingForm = () => {
 };
 
 export default BookingForm;
-

@@ -1,108 +1,66 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
+import { BoxCardSkeleton } from "@/components/ui/Skeleton";
+import { useMultipleDemoLoading } from "@/hooks/useDemoLoading";
+import ProductImageCard from "@/components/ui/ProductImageCard";
 import { featuredBoxes } from "@/data/featuredBoxes";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
-const FeaturedBoxesSection = () => {
+export default function FeaturedBoxesSection() {
+  const { isItemLoaded } = useMultipleDemoLoading(featuredBoxes.length, 1000);
+
   return (
-    <section className="bg-cream-50" style={{ padding: "5vw 0" }}>
-      <div className="container mx-auto" style={{ padding: "0 1vw" }}>
-        <div className="text-center" style={{ marginBottom: "4vw" }}>
-          <h2
-            className="font-bold mb-4"
-            style={{
-              fontSize: "clamp(22px, 2vw, 2.5rem)",
-              marginBottom: "1vw",
-            }}
-          >
+    <section className='py-20 bg-product-gradient'>
+      <div className='container mx-auto px-4'>
+        <div className='text-center mb-16'>
+          <h2 className='text-3xl md:text-4xl font-montserrat font-bold text-brand-brown mb-4'>
             Các hộp chủ đề Skylarbox
           </h2>
-          <p
-            className="text-brand-gray"
-            style={{
-              maxWidth: "50vw",
-              margin: "0 auto",
-              fontSize: "clamp(16px, 1vw, 1.25rem)",
-            }}
-          >
+          <p className='text-brand-gray max-w-2xl mx-auto'>
             Mỗi hộp quà được thiết kế với chủ đề riêng biệt, mang đến trải
             nghiệm chữa lành độc đáo
           </p>
         </div>
 
-        <div
-          className="grid md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: "2vw", marginBottom: "3vw" }}
-        >
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12'>
           {featuredBoxes.map((box, index) => (
             <motion.div
-              key={box.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-              style={{ height: "24vw", minHeight: "300px" }}
+              className='group cursor-pointer'
             >
-              <div className="relative h-2/3">
-                <img
-                  src={box.image}
+              {!isItemLoaded(index) && <BoxCardSkeleton />}
+              <div
+                className={`rounded-2xl h-96 relative overflow-hidden transition-transform group-hover:scale-105 ${
+                  !isItemLoaded(index) ? "hidden" : "block"
+                }`}
+              >
+                <ProductImageCard
+                  giftImage={box.giftImage}
+                  productImage={box.productImage}
+                  giftIcon={box.giftIcon}
                   alt={box.name}
-                  className="w-full h-full object-cover"
+                  className='w-full h-full'
+                  showDetails={true}
+                  giftTitle={`${box.name} - ${box.price}`}
+                  giftSubtitle={box.description}
+                  productTitle={`${box.name} - ${box.price}`}
+                  productSubtitle={box.description}
+                  isHoverToOpen={false}
                 />
-                <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3
-                    className="font-bold mb-2"
-                    style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
-                  >
-                    {box.name}
-                  </h3>
-                  <p
-                    className="text-sm opacity-90"
-                    style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
-                  >
-                    {box.description}
-                  </p>
-                </div>
-              </div>
-              <div className="p-6" style={{ padding: "1.5vw" }}>
-                <div className="flex justify-between items-center mb-4">
-                  <span
-                    className="text-2xl font-bold text-brand-lavender"
-                    style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
-                  >
-                    {box.price}
-                  </span>
-                  <span
-                    className="text-sm text-brand-gray"
-                    style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
-                  >
-                    {box.duration}
-                  </span>
-                </div>
-                <Link href={`/products/${box.id}`}>
-                  <Button
-                    className="w-full"
-                    style={{
-                      padding: "0.75vw 2vw",
-                      fontSize: "clamp(16px, 1vw, 1.25rem)",
-                    }}
-                  >
-                    Khám phá ngay
-                  </Button>
-                </Link>
               </div>
             </motion.div>
           ))}
         </div>
+
+        <div className='text-center'>
+          <button className='bg-brand-rose text-white px-8 py-3 rounded-full hover:bg-brand-rose/90 transition-colors font-medium'>
+            Xem tất cả các hộp chủ đề
+          </button>
+        </div>
       </div>
     </section>
   );
-};
-
-export default FeaturedBoxesSection;
-
+}
