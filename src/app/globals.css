@@ -3,7 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,17 +15,72 @@ body {
   font-family: "Poppins", "Inter", sans-serif;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  color: #6D4C41; /* Brand brown color for better readability */
+  color: #1a1a1a; /* Changed from brown to black for better readability */
+  font-size: 16px; /* Base font size increased */
+  line-height: 1.6;
+}
+
+/* Improved typography scale */
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.6;
 }
 
 .script-font {
   font-family: "Dancing Script", cursive;
   font-weight: 600;
+  font-style: italic;
 }
 
 .great-vibes-font {
   font-family: "Great Vibes", cursive;
   font-weight: 600;
+}
+
+/* Special fonts for hero content */
+.hero-title {
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+.hero-description {
+  font-family: "Playfair Display", serif;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.8;
 }
 
 /* Line clamp utilities */
@@ -52,12 +108,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBA7E0;
+  background: #000000;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b894d6;
+  background: #333333;
 }
 
 /* Hide scrollbar for horizontal scroll */
@@ -116,40 +172,55 @@ body {
   animation: shimmer 2s infinite;
 }
 
-/* Responsive typography */
+/* Enhanced responsive typography */
 @media (max-width: 640px) {
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
     line-height: 1.2;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
     line-height: 1.3;
+  }
+
+  .body-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
   }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .hero-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     line-height: 1.1;
   }
 
   .section-title {
-    font-size: 3rem;
+    font-size: 3.25rem;
     line-height: 1.2;
+  }
+
+  .body-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
   }
 }
 
 @media (min-width: 1025px) {
   .hero-title {
-    font-size: 5rem;
+    font-size: 5.5rem;
     line-height: 1.1;
   }
 
   .section-title {
-    font-size: 3.5rem;
+    font-size: 4rem;
     line-height: 1.2;
+  }
+
+  .body-text {
+    font-size: 1.375rem;
+    line-height: 1.6;
   }
 }
 
@@ -165,26 +236,28 @@ body {
 
 /* Button styles */
 .btn-primary {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, #000000, #333333);
   color: white;
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: 8px;
   font-weight: 600;
+  font-size: 1.125rem;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg, #333333, #000000);
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Navigation styles */
 .nav-link {
   position: relative;
   transition: color 0.3s ease;
+  font-size: 1.125rem;
 }
 
 .nav-link::after {
@@ -194,7 +267,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: #3b82f6;
+  background: #000000;
   transition: width 0.3s ease;
 }
 
@@ -224,17 +297,16 @@ body {
   }
 }
 
-
-
 /* Form styles */
 .form-input {
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  font-size: 1.125rem;
 }
 
 .form-input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Custom scrollbar for horizontal scroll */
@@ -248,7 +320,7 @@ body {
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #000000;
   border-radius: 4px;
 }
 
@@ -283,8 +355,6 @@ body {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-
-
 /* Text outline utilities */
 .text-outline {
   -webkit-text-stroke: 2px currentColor;
@@ -317,40 +387,197 @@ body {
   }
 }
 
-/* @media (min-width: 1024px) {
+@media (min-width: 1024px) {
   .container {
     padding: 0 3rem;
   }
-} */
+}
 
-/* @media (min-width: 1280px) {
+@media (min-width: 1280px) {
   .container {
     padding: 0 4rem;
   }
-} */
-
-/* Utils */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
 }
 
-/* Text outline utilities */
-.text-outline {
-  -webkit-text-stroke: 2px #eab308;
-  -webkit-text-fill-color: transparent;
-  color: inherit;
+/* Polaroid effect for product cards */
+.polaroid-card {
+  background: white;
+  padding: 12px 12px 32px 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
 }
 
-.text-outline-thin {
-  -webkit-text-stroke: 1px #eab308;
-  -webkit-text-fill-color: transparent;
-  color: inherit;
+.polaroid-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.text-outline-thick {
-  -webkit-text-stroke: 3px #eab308;
-  -webkit-text-fill-color: transparent;
-  color: inherit;
+.polaroid-caption {
+  font-family: "Dancing Script", cursive;
+  font-style: italic;
+  font-size: 1.125rem;
+  color: #333333;
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.4;
+}
+
+/* Scrapbooking effect */
+.scrapbook-paper {
+  background: #faf9f6;
+  border: 1px solid #e5e5e5;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.scrapbook-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Full screen scroll sections */
+.full-screen-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+
+.full-screen-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+/* Enhanced button styles */
+.btn-cta {
+  background: #000000;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  border: 2px solid #000000;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-cta:hover {
+  background: transparent;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cta-secondary {
+  background: transparent;
+  color: #000000;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  border: 2px solid #000000;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-cta-secondary:hover {
+  background: #000000;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Piano Key Navigation */
+.piano-key {
+  width: 60px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.piano-key:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.piano-key:active {
+  transform: translateY(0);
+}
+
+/* Video Hero Styles */
+.video-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-hero video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* Hero Content Animation */
+.hero-content {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress Bar Animation */
+.progress-bar {
+  animation: progressFill 5s linear infinite;
+}
+
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }

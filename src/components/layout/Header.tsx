@@ -49,11 +49,13 @@ export default function Header({ className = "" }: HeaderProps) {
           {/* Logo */}
           <Link href='/' className='flex items-center space-x-2'>
             <div className='w-12 h-12 bg-gradient-to-br from-brand-lavender to-brand-lavender rounded-lg flex items-center justify-center relative'>
-              <Image src='/logo/logo.png' fill alt='logo' className='object-contain' />
+              <Image
+                src='/logo/logo.png'
+                fill
+                alt='logo'
+                className='object-contain'
+              />
             </div>
-            <span className='text-xl font-montserrat font-bold text-brand-brown uppercase tracking-wide'>
-              SKYLARBOX
-            </span>
           </Link>
 
           {/* Desktop Menu */}

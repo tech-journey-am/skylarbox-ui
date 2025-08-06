@@ -1,5 +1,4 @@
 export { default as AboutSection } from "./AboutSection";
-export { default as EventSection } from "./EventSection";
 export { default as HeroSection } from "./HeroSection";
 export { default as PartnerSection } from "./PartnerSection";
 export { default as TestimonialSection } from "./TestimonialSection";

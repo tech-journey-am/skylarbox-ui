@@ -1,18 +1,11 @@
 import * as React from "react";
 import Link from "next/link";
+import { quickLinks } from "@/data/navigation";
 
 interface QuickLinksProps {}
 
 export function QuickLinks({}: QuickLinksProps) {
-  const links = [
-    { name: "Giới thiệu", href: "/about" },
-    { name: "Sản phẩm", href: "/products" },
-    { name: "Subscription", href: "/subscription" },
-    { name: "Blog", href: "/blog" },
-    { name: "Cộng đồng", href: "/community" },
-    { name: "Chính sách bảo mật", href: "/privacy" },
-    { name: "Điều khoản sử dụng", href: "/terms" },
-  ];
+  const links = quickLinks;
 
   return (
     <nav className='w-[103px]'>

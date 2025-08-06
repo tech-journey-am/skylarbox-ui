@@ -6,49 +6,7 @@ import { ProductCardSkeleton } from "@/components/ui/Skeleton";
 import { useMultipleDemoLoading } from "@/hooks/useDemoLoading";
 import ProductImageCard from "@/components/ui/ProductImageCard";
 import { BLUR_DATA_URL } from "@/components/constants";
-
-const individualProducts = [
-  {
-    name: "Bộ bài Skylar Oracle",
-    price: "299.000đ",
-    category: "Oracle Cards",
-    giftImage: "/images/box/demo.png",
-    productImage: "/images/box/skylar_oracle_1.png",
-    giftIcon: "🔮",
-  },
-  {
-    name: "Bộ bài Skylar Oracle",
-    price: "299.000đ",
-    category: "Oracle Cards",
-    giftImage: "/images/box/demo.png",
-    productImage: "/images/box/skylar_oracle_2.png",
-    giftIcon: "🔮",
-  },
-  {
-    name: "Thẻ cảm xúc",
-    price: "199.000đ",
-    category: "Emotion Cards",
-    giftImage: "/images/box/demo.png",
-    productImage: "/images/box/the_cam_xuc.png",
-    giftIcon: "💝",
-  },
-  {
-    name: "Thiệp chữa lành",
-    price: "99.000đ",
-    category: "Cards",
-    giftImage: "/images/box/demo.png",
-    productImage: "/images/box/thiep_1.png",
-    giftIcon: "💌",
-  },
-  {
-    name: "Thiệp chữa lành",
-    price: "99.000đ",
-    category: "Cards",
-    giftImage: "/images/box/demo.png",
-    productImage: "/images/box/thiep_2.png",
-    giftIcon: "💌",
-  },
-];
+import { individualProducts } from "@/data/products";
 
 export default function IndividualProductsSection() {
   const { isItemLoaded } = useMultipleDemoLoading(
