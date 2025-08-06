@@ -1,54 +1,104 @@
-import * as React from "react";
-import { IconMail, IconPhone, IconLocations } from "@/components/icon";
+import React from "react";
+import { IconPhone, IconMail, IconLocation } from "@/components/icon";
 
-interface ContactInfoProps {}
-
-export function ContactInfo({}: ContactInfoProps) {
+const ContactInfo = () => {
   return (
-    <section className='min-w-60 w-[251px]'>
-      <h3 className='text-lg font-semibold leading-none text-brand-brown font-montserrat'>
-        Liên hệ với chúng tôi
+    <div className="w-full" style={{ minWidth: "15vw", width: "17.5vw" }}>
+      <h3
+        className="font-semibold mb-4"
+        style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "1vw" }}
+      >
+        Thông tin liên hệ
       </h3>
-      <div className='flex flex-col mt-6 w-full text-xs max-w-[251px] text-brand-gray'>
-        <div className='flex gap-3 items-center self-start leading-none whitespace-nowrap'>
-          <div className='shrink-0 self-stretch my-auto size-7 inline-flex text-brand-lavender bg-brand-lavender/10 justify-center items-center rounded-full aspect-square'>
-            <IconMail />
-          </div>
-          <a
-            href='mailto:TBC'
-            className='self-stretch my-auto hover:text-brand-lavender transition-colors'
+
+      <div className="space-y-4" style={{ gap: "1vw" }}>
+        <div className="flex items-start gap-3" style={{ gap: "0.75vw" }}>
+          <div
+            className="flex-shrink-0"
+            style={{
+              width: "1.75vw",
+              height: "1.75vw",
+              minWidth: "28px",
+              minHeight: "28px",
+            }}
           >
-            TBC
-          </a>
-        </div>
-
-        <h4 className='mt-3 font-semibold text-brand-brown'>Văn phòng chính</h4>
-
-        <div className='flex gap-3 items-center self-start mt-3 leading-none'>
-          <div className='shrink-0 self-stretch my-auto size-7 inline-flex text-brand-lavender bg-brand-lavender/10 justify-center items-center rounded-full aspect-square'>
-            <IconPhone />
+            <IconPhone className="w-full h-full text-brand-lavender" />
           </div>
-          <div className='flex flex-col justify-center self-stretch my-auto'>
-            <a
-              href='tel:TBC'
-              className='hover:text-brand-lavender transition-colors'
+          <div>
+            <h4
+              className="font-medium"
+              style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
             >
-              TBC
-            </a>
+              Điện thoại
+            </h4>
+            <p
+              className="text-brand-gray"
+              style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+            >
+              +84 123 456 789
+            </p>
           </div>
         </div>
 
-        <div className='flex gap-3 items-center mt-3 w-full leading-4'>
-          <div className='shrink-0 self-stretch my-auto size-7 inline-flex text-brand-lavender bg-brand-lavender/10 justify-center items-center rounded-full aspect-square'>
-            <IconLocations />
+        <div className="flex items-start gap-3" style={{ gap: "0.75vw" }}>
+          <div
+            className="flex-shrink-0"
+            style={{
+              width: "1.75vw",
+              height: "1.75vw",
+              minWidth: "28px",
+              minHeight: "28px",
+            }}
+          >
+            <IconMail className="w-full h-full text-brand-lavender" />
           </div>
-          <address className='self-stretch my-auto not-italic'>
-            Tầng 8, tòa nhà Bạch Đằng complex, <br />
-            50 Bạch Đằng, Phường Hải Châu, <br />
-            Thành phố Đà Nẵng
-          </address>
+          <div>
+            <h4
+              className="font-medium"
+              style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+            >
+              Email
+            </h4>
+            <p
+              className="text-brand-gray"
+              style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+            >
+              info@skylarbox.com
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-3" style={{ gap: "0.75vw" }}>
+          <div
+            className="flex-shrink-0"
+            style={{
+              width: "1.75vw",
+              height: "1.75vw",
+              minWidth: "28px",
+              minHeight: "28px",
+            }}
+          >
+            <IconLocation className="w-full h-full text-brand-lavender" />
+          </div>
+          <div>
+            <h4
+              className="font-medium"
+              style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+            >
+              Địa chỉ
+            </h4>
+            <address
+              className="text-brand-gray not-italic"
+              style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+            >
+              123 Đường ABC, Quận 1, TP.HCM
+            </address>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default ContactInfo;
+

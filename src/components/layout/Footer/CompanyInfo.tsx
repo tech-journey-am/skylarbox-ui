@@ -1,38 +1,92 @@
-import * as React from "react";
+import React from "react";
 import {
   IconFacebook,
-  IconLinkedin,
   IconInstagram,
-  IconWhatsapp,
+  IconLinkedin,
+  IconYoutube,
 } from "@/components/icon";
-import Link from "next/link";
 
-interface CompanyInfoProps {}
-
-export function CompanyInfo({}: CompanyInfoProps) {
+const CompanyInfo = () => {
   return (
-    <section className='flex flex-col min-w-60 w-[280px]'>
-      <h3 className='text-base font-semibold leading-none capitalize text-brand-brown font-montserrat'>
-        SKYLARBOX
+    <div className="w-full" style={{ minWidth: "15vw", width: "17.5vw" }}>
+      <h3
+        className="font-semibold mb-4"
+        style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "1vw" }}
+      >
+        Skylarbox
       </h3>
-      <p className='mt-5 text-xs leading-5 text-brand-gray'>
-        Skylarbox - Hộp quà chữa lành với các sản phẩm nguyên bản, dịu dàng,
-        sống động và lành. Mỗi người tìm bình yên theo cách riêng của mình.
+      <p
+        className="text-brand-gray leading-relaxed"
+        style={{
+          marginTop: "1.25vw",
+          fontSize: "clamp(16px, 1vw, 1.25rem)",
+          lineHeight: "1.25",
+        }}
+      >
+        Chuyên về các sản phẩm chữa lành tâm hồn, mang lại sự bình yên và ấm áp
+        cho mọi người.
       </p>
-      <div className='flex gap-2 items-center self-start mt-5'>
-        <Link href='#' className='shrink-0 self-stretch my-auto size-7 inline-flex text-brand-lavender bg-brand-lavender/10 justify-center items-center rounded-full aspect-square hover:bg-brand-lavender/20 transition-colors'>
-          <IconFacebook />
-        </Link>
-        <Link href='#' className='shrink-0 self-stretch my-auto size-7 inline-flex text-brand-lavender bg-brand-lavender/10 justify-center items-center rounded-full aspect-square hover:bg-brand-lavender/20 transition-colors'>
-          <IconLinkedin />
-        </Link>
-        <Link href='#' className='shrink-0 self-stretch my-auto size-7 inline-flex text-brand-lavender bg-brand-lavender/10 justify-center items-center rounded-full aspect-square hover:bg-brand-lavender/20 transition-colors'>
-          <IconWhatsapp />
-        </Link>
-        <Link href='#' className='shrink-0 self-stretch my-auto size-7 inline-flex text-brand-lavender bg-brand-lavender/10 justify-center items-center rounded-full aspect-square hover:bg-brand-lavender/20 transition-colors'>
-          <IconInstagram />
-        </Link>
+
+      <div
+        className="flex space-x-4 mt-6"
+        style={{ gap: "0.5vw", marginTop: "1.25vw" }}
+      >
+        <a
+          href="#"
+          className="text-brand-gray hover:text-brand-lavender transition-colors"
+        >
+          <IconFacebook
+            style={{
+              width: "1.75vw",
+              height: "1.75vw",
+              minWidth: "28px",
+              minHeight: "28px",
+            }}
+          />
+        </a>
+        <a
+          href="#"
+          className="text-brand-gray hover:text-brand-lavender transition-colors"
+        >
+          <IconInstagram
+            style={{
+              width: "1.75vw",
+              height: "1.75vw",
+              minWidth: "28px",
+              minHeight: "28px",
+            }}
+          />
+        </a>
+        <a
+          href="#"
+          className="text-brand-gray hover:text-brand-lavender transition-colors"
+        >
+          <IconLinkedin
+            style={{
+              width: "1.75vw",
+              height: "1.75vw",
+              minWidth: "28px",
+              minHeight: "28px",
+            }}
+          />
+        </a>
+        <a
+          href="#"
+          className="text-brand-gray hover:text-brand-lavender transition-colors"
+        >
+          <IconYoutube
+            style={{
+              width: "1.75vw",
+              height: "1.75vw",
+              minWidth: "28px",
+              minHeight: "28px",
+            }}
+          />
+        </a>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default CompanyInfo;
+

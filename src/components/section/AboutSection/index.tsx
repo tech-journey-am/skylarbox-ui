@@ -1,155 +1,181 @@
-import { BLUR_IMAGE } from "@/components/constants";
-import Image from "next/image";
 import React from "react";
-import { Eye, Heart, Sun } from "lucide-react";
 import { motion } from "framer-motion";
+import { IconHeart, IconLocation, IconClock } from "@/components/icon";
 
 const AboutSection = () => {
   return (
-    <section id='about' className='bg-mainColor text-white py-16 md:py-24'>
-      <div className='container mx-auto px-4'>
-        {/* Top */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className='flex gap-12 flex-col lg:flex-row items-center'
-        >
+    <section className="bg-white" style={{ padding: "5vw 0" }}>
+      <div className="container mx-auto" style={{ padding: "0 1vw" }}>
+        <div className="grid lg:grid-cols-2 gap-12" style={{ gap: "3vw" }}>
+          {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className='space-y-4 flex-1'
+            transition={{ duration: 0.8 }}
           >
-            <h1 className='text-7xl md:text-8xl font-bold font-great-vibes'>
-              Thắp Sáng
+            <h1
+              className="font-bold mb-6"
+              style={{
+                fontSize: "clamp(28px, 2.5vw, 3.5rem)",
+                marginBottom: "1.5vw",
+              }}
+            >
+              Về dự án "Thắp Sáng"
             </h1>
-            <p className='leading-snug tracking-tight text-base md:text-lg text-justify'>
-              là một dự án trực thuộc <b>JCI Đà Nẵng</b>, với mục tiêu cải thiện
-              chất lượng cuộc sống cho người dân{" "}
-              <b>ở vùng khó khăn, thiếu điều kiện ánh sáng</b>, thông qua việc
-              <b>
-                {" "}
-                lắp đặt đèn năng lượng mặt trời và máy phát điện quang năng.
-              </b>{" "}
-              Dự án được triển khai dựa trên 17 Mục tiêu Phát triển Bền vững (17
-              SDGs) của <b>Liên Hợp Quốc</b>.
+            <p
+              className="text-brand-gray mb-8 leading-relaxed"
+              style={{
+                fontSize: "clamp(16px, 1vw, 1.25rem)",
+                marginBottom: "2vw",
+              }}
+            >
+              "Thắp Sáng" là dự án đặc biệt của Skylarbox, được thiết kế để mang
+              lại ánh sáng và hy vọng cho những người đang gặp khó khăn trong
+              cuộc sống. Thông qua những hộp quà chữa lành, chúng tôi mong muốn
+              lan tỏa tình yêu thương và sự ấm áp đến mọi người.
             </p>
-            <p className='text-lg md:text-xl'>
-              Thắp triệu ngọn <span className='font-bold'>đèn sáng</span> triệu
-              con tim
-            </p>
+
+            <div className="space-y-6" style={{ gap: "1.5vw" }}>
+              <div className="flex items-start gap-4" style={{ gap: "1vw" }}>
+                <div
+                  className="flex-shrink-0"
+                  style={{
+                    width: "3vw",
+                    height: "3vw",
+                    minWidth: "48px",
+                    minHeight: "48px",
+                  }}
+                >
+                  <IconHeart className="w-full h-full text-brand-lavender" />
+                </div>
+                <div>
+                  <h3
+                    className="font-semibold mb-2"
+                    style={{
+                      fontSize: "clamp(18px, 1.5vw, 2rem)",
+                      marginBottom: "0.5vw",
+                    }}
+                  >
+                    Chữa lành tâm hồn
+                  </h3>
+                  <p
+                    className="text-brand-gray"
+                    style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+                  >
+                    Mỗi sản phẩm được chọn lọc kỹ lưỡng để mang lại cảm giác
+                    bình yên và ấm áp.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4" style={{ gap: "1vw" }}>
+                <div
+                  className="flex-shrink-0"
+                  style={{
+                    width: "3vw",
+                    height: "3vw",
+                    minWidth: "48px",
+                    minHeight: "48px",
+                  }}
+                >
+                  <IconLocation className="w-full h-full text-brand-lavender" />
+                </div>
+                <div>
+                  <h3
+                    className="font-semibold mb-2"
+                    style={{
+                      fontSize: "clamp(18px, 1.5vw, 2rem)",
+                      marginBottom: "0.5vw",
+                    }}
+                  >
+                    Lan tỏa yêu thương
+                  </h3>
+                  <p
+                    className="text-brand-gray"
+                    style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+                  >
+                    Chúng tôi tin rằng mỗi hành động nhỏ đều có thể tạo ra sự
+                    thay đổi lớn.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4" style={{ gap: "1vw" }}>
+                <div
+                  className="flex-shrink-0"
+                  style={{
+                    width: "3vw",
+                    height: "3vw",
+                    minWidth: "48px",
+                    minHeight: "48px",
+                  }}
+                >
+                  <IconClock className="w-full h-full text-brand-lavender" />
+                </div>
+                <div>
+                  <h3
+                    className="font-semibold mb-2"
+                    style={{
+                      fontSize: "clamp(18px, 1.5vw, 2rem)",
+                      marginBottom: "0.5vw",
+                    }}
+                  >
+                    Kết nối cộng đồng
+                  </h3>
+                  <p
+                    className="text-brand-gray"
+                    style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+                  >
+                    Xây dựng một cộng đồng yêu thương và hỗ trợ lẫn nhau.
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
+
+          {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className='bg-white rounded-2xl p-2 size-[300px] md:size-[500px] overflow-hidden shadow-2xl'
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
           >
-            <div className='rounded-lg overflow-hidden relative  aspect-square'>
-              <Image
-                src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=800&fit=crop&crop=center'
-                alt='Solar panels bringing light to rural community'
-                fill
-                className='object-cover'
-                placeholder='blur'
-                blurDataURL={BLUR_IMAGE}
+            <div
+              className="relative rounded-2xl overflow-hidden"
+              style={{ height: "30vw", minHeight: "400px", maxHeight: "500px" }}
+            >
+              <img
+                src="/images/village.jpg"
+                alt="Thắp Sáng Project"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <h2
+                  className="font-bold mb-2"
+                  style={{
+                    fontSize: "clamp(22px, 2vw, 2.5rem)",
+                    marginBottom: "0.5vw",
+                  }}
+                >
+                  Thắp Sáng
+                </h2>
+                <p
+                  className="text-white/90"
+                  style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+                >
+                  Dự án chữa lành tâm hồn
+                </p>
+              </div>
             </div>
           </motion.div>
-        </motion.div>
-        {/* Bottom - Vision, Mission, Core Values */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className='mt-16 md:mt-24'
-        >
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.8, staggerChildren: 0.2 }}
-            className='grid md:grid-cols-3 gap-8'
-          >
-            {/* Tầm nhìn */}
-            <motion.div
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className='bg-white/20 backdrop-blur-md rounded-2xl p-8 text-center hover:bg-white/25 transition-all duration-300 border border-white/20 shadow-lg hover:shadow-xl'
-            >
-              <div className='w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg'>
-                <Eye className='w-10 h-10 text-white' />
-              </div>
-              <h3 className='text-2xl font-bold mb-4 text-white'>Tầm nhìn</h3>
-              <p className='text-base leading-relaxed text-white'>
-                Trở thành dự án hàng đầu về phát triển bền vững tại Việt Nam,
-                mang ánh sáng và hy vọng đến mọi ngóc ngách của đất nước, góp
-                phần xây dựng một cộng đồng văn minh và thịnh vượng.
-              </p>
-            </motion.div>
-
-            {/* Sứ mệnh */}
-            <motion.div
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className='bg-white/20 backdrop-blur-md rounded-2xl p-8 text-center hover:bg-white/25 transition-all duration-300 border border-white/20 shadow-lg hover:shadow-xl'
-            >
-              <div className='w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg'>
-                <Sun className='w-10 h-10 text-white' />
-              </div>
-              <h3 className='text-2xl font-bold mb-4 text-white'>Sứ mệnh</h3>
-              <p className='text-base leading-relaxed text-white'>
-                Cải thiện chất lượng cuộc sống cho người dân vùng khó khăn thông
-                qua việc cung cấp năng lượng sạch, bền vững. Kết nối cộng đồng
-                và lan tỏa tinh thần tương thân tương ái trong xã hội.
-              </p>
-            </motion.div>
-
-            {/* Giá trị cốt lõi */}
-            <motion.div
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className='bg-white/20 backdrop-blur-md rounded-2xl p-8 text-center hover:bg-white/25 transition-all duration-300 border border-white/20 shadow-lg hover:shadow-xl'
-            >
-              <div className='w-20 h-20 bg-gradient-to-br from-red-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg'>
-                <Heart className='w-10 h-10 text-white' />
-              </div>
-              <h3 className='text-2xl font-bold mb-4 text-white'>
-                Giá trị cốt lõi
-              </h3>
-              <div className='text-base leading-relaxed text-white space-y-3'>
-                <div className='flex items-center justify-center gap-3'>
-                  <span className='text-xl'>🌱</span>
-                  <span>Phát triển bền vững</span>
-                </div>
-                <div className='flex items-center justify-center gap-3'>
-                  <span className='text-xl'>🤝</span>
-                  <span>Kết nối cộng đồng</span>
-                </div>
-                <div className='flex items-center justify-center gap-3'>
-                  <span className='text-xl'>💡</span>
-                  <span>Sáng tạo và đổi mới</span>
-                </div>
-                <div className='flex items-center justify-center gap-3'>
-                  <span className='text-xl'>❤️</span>
-                  <span>Tình nguyện và chia sẻ</span>
-                </div>
-                <div className='flex items-center justify-center gap-3'>
-                  <span className='text-xl'>🌟</span>
-                  <span>Trách nhiệm xã hội</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
 export default AboutSection;
+

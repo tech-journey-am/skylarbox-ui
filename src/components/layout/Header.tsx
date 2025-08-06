@@ -1,205 +1,277 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
-import Image from "next/image";
-interface HeaderProps {
-  className?: string;
-}
+import { motion } from "framer-motion";
+import { IconBoat } from "@/components/icon";
 
-export default function Header({ className = "" }: HeaderProps) {
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-
-  // Header scroll effect
-  useEffect(() => {
-    const controlNavbar = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY < 10) {
-        setIsHeaderVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsHeaderVisible(false);
-        setIsMobileMenuOpen(false);
-      } else if (currentScrollY < lastScrollY) {
-        setIsHeaderVisible(true);
-      }
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", controlNavbar);
-    return () => window.removeEventListener("scroll", controlNavbar);
-  }, [lastScrollY]);
-
-  const addToCart = () => {
-    setCartCount((prev) => prev + 1);
-  };
 
   return (
     <header
-      className={`bg-white/95 backdrop-blur-sm fixed top-0 inset-x-0 h-20 z-50 transition-transform duration-300 ease-in-out shadow-sm border-b border-gray-100 ${className} ${
-        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className="bg-white shadow-sm sticky top-0 z-50"
+      style={{ height: "5vw", minHeight: "80px" }}
     >
-      <div className='container mx-auto px-4 h-full'>
-        <nav className='flex items-center justify-between h-full'>
+      <div className="container mx-auto" style={{ padding: "0 1vw" }}>
+        <div
+          className="flex items-center justify-between h-full"
+          style={{ height: "100%" }}
+        >
           {/* Logo */}
-          <Link href='/' className='flex items-center space-x-2'>
-            <div className='w-12 h-12 bg-gradient-to-br from-brand-lavender to-brand-lavender rounded-lg flex items-center justify-center relative'>
-              <Image
-                src='/logo/logo.png'
-                fill
-                alt='logo'
-                className='object-contain'
+          <Link href="/" className="flex items-center">
+            <div
+              className="w-12 h-12 bg-brand-lavender rounded-lg flex items-center justify-center mr-3"
+              style={{
+                width: "3vw",
+                height: "3vw",
+                minWidth: "48px",
+                minHeight: "48px",
+                marginRight: "0.75vw",
+              }}
+            >
+              <IconBoat
+                className="text-white"
+                style={{
+                  width: "1.5vw",
+                  height: "1.5vw",
+                  minWidth: "24px",
+                  minHeight: "24px",
+                }}
               />
             </div>
+            <span
+              className="font-bold text-xl text-brand-brown"
+              style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
+            >
+              Skylarbox
+            </span>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className='hidden md:flex items-center space-x-8'>
+          {/* Desktop Navigation */}
+          <nav
+            className="hidden md:flex items-center space-x-8"
+            style={{ gap: "2vw" }}
+          >
             <Link
-              href='/about'
-              className='text-brand-gray hover:text-brand-lavender transition-colors'
+              href="/about"
+              className="text-brand-gray hover:text-brand-lavender transition-colors font-medium"
+              style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
             >
               Giới thiệu
             </Link>
             <Link
-              href='/products'
-              className='text-brand-gray hover:text-brand-lavender transition-colors'
+              href="/products"
+              className="text-brand-gray hover:text-brand-lavender transition-colors font-medium"
+              style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
             >
               Sản phẩm
             </Link>
             <Link
-              href='/subscription'
-              className='text-brand-gray hover:text-brand-lavender transition-colors'
+              href="/subscription"
+              className="text-brand-gray hover:text-brand-lavender transition-colors font-medium"
+              style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
             >
               Subscription
             </Link>
             <Link
-              href='/blog'
-              className='text-brand-gray hover:text-brand-lavender transition-colors'
+              href="/blog"
+              className="text-brand-gray hover:text-brand-lavender transition-colors font-medium"
+              style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
             >
               Blog
             </Link>
             <Link
-              href='/community'
-              className='text-brand-gray hover:text-brand-lavender transition-colors'
+              href="/community"
+              className="text-brand-gray hover:text-brand-lavender transition-colors font-medium"
+              style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
             >
               Cộng đồng
             </Link>
-          </div>
+          </nav>
 
           {/* Search Bar */}
-          <div className='hidden md:flex items-center space-x-4'>
-            <div className='relative'>
+          <div
+            className="hidden lg:flex items-center flex-1 max-w-md mx-8"
+            style={{ maxWidth: "25vw", margin: "0 2vw" }}
+          >
+            <div className="relative w-full">
               <input
-                type='text'
-                placeholder='Tìm kiếm...'
-                className='w-64 pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-lavender focus:border-transparent'
+                type="text"
+                placeholder="Tìm kiếm sản phẩm..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-lavender focus:border-transparent"
+                style={{
+                  padding: "0.5vw 1vw",
+                  fontSize: "clamp(16px, 1vw, 1.25rem)",
+                }}
               />
-              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4' />
-            </div>
-
-            {/* Cart & User */}
-            <div className='flex items-center space-x-3'>
-              <button className='relative p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
-                <ShoppingCart className='w-6 h-6' />
-                {cartCount > 0 && (
-                  <span className='absolute -top-1 -right-1 bg-brand-rose text-white text-xs rounded-full w-5 h-5 flex items-center justify-center'>
-                    {cartCount}
-                  </span>
-                )}
-              </button>
-              <button className='p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
-                <User className='w-6 h-6' />
+              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-brand-lavender">
+                <svg
+                  className="w-5 h-5"
+                  style={{
+                    width: "1.25vw",
+                    height: "1.25vw",
+                    minWidth: "20px",
+                    minHeight: "20px",
+                  }}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
               </button>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className='md:hidden p-2'
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className='w-6 h-6 text-gray-700' />
-            ) : (
-              <Menu className='w-6 h-6 text-gray-700' />
-            )}
-          </button>
-        </nav>
-      </div>
+          {/* Right Icons */}
+          <div className="flex items-center space-x-4" style={{ gap: "1vw" }}>
+            <button className="text-brand-gray hover:text-brand-lavender transition-colors">
+              <svg
+                className="w-6 h-6"
+                style={{
+                  width: "1.5vw",
+                  height: "1.5vw",
+                  minWidth: "24px",
+                  minHeight: "24px",
+                }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m6 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"
+                />
+              </svg>
+            </button>
+            <button className="text-brand-gray hover:text-brand-lavender transition-colors">
+              <svg
+                className="w-6 h-6"
+                style={{
+                  width: "1.5vw",
+                  height: "1.5vw",
+                  minWidth: "24px",
+                  minHeight: "24px",
+                }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+            </button>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-brand-gray hover:text-brand-lavender transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <svg
+                className="w-6 h-6"
+                style={{
+                  width: "1.5vw",
+                  height: "1.5vw",
+                  minWidth: "24px",
+                  minHeight: "24px",
+                }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className='md:hidden bg-white border-t border-gray-100'
+            className="md:hidden bg-white border-t border-gray-200"
+            style={{ borderTop: "1px solid #e5e7eb" }}
           >
-            <div className='px-4 py-6 space-y-4'>
+            <div
+              className="py-4 space-y-4"
+              style={{ padding: "1vw 0", gap: "1vw" }}
+            >
               <Link
-                href='/about'
-                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+                href="/about"
+                className="block px-4 py-2 text-brand-gray hover:text-brand-lavender transition-colors"
+                style={{
+                  padding: "0.5vw 1vw",
+                  fontSize: "clamp(18px, 1.5vw, 2rem)",
+                }}
               >
                 Giới thiệu
               </Link>
               <Link
-                href='/products'
-                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+                href="/products"
+                className="block px-4 py-2 text-brand-gray hover:text-brand-lavender transition-colors"
+                style={{
+                  padding: "0.5vw 1vw",
+                  fontSize: "clamp(18px, 1.5vw, 2rem)",
+                }}
               >
                 Sản phẩm
               </Link>
               <Link
-                href='/subscription'
-                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+                href="/subscription"
+                className="block px-4 py-2 text-brand-gray hover:text-brand-lavender transition-colors"
+                style={{
+                  padding: "0.5vw 1vw",
+                  fontSize: "clamp(18px, 1.5vw, 2rem)",
+                }}
               >
                 Subscription
               </Link>
               <Link
-                href='/blog'
-                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+                href="/blog"
+                className="block px-4 py-2 text-brand-gray hover:text-brand-lavender transition-colors"
+                style={{
+                  padding: "0.5vw 1vw",
+                  fontSize: "clamp(18px, 1.5vw, 2rem)",
+                }}
               >
                 Blog
               </Link>
               <Link
-                href='/community'
-                className='block text-gray-700 hover:text-brand-lavender transition-colors'
+                href="/community"
+                className="block px-4 py-2 text-brand-gray hover:text-brand-lavender transition-colors"
+                style={{
+                  padding: "0.5vw 1vw",
+                  fontSize: "clamp(18px, 1.5vw, 2rem)",
+                }}
               >
                 Cộng đồng
               </Link>
-              <div className='pt-4 border-t border-gray-100'>
-                <div className='relative mb-4'>
-                  <input
-                    type='text'
-                    placeholder='Tìm kiếm...'
-                    className='w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-lavender'
-                  />
-                  <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4' />
-                </div>
-                <div className='flex items-center space-x-3'>
-                  <button className='relative p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
-                    <ShoppingCart className='w-6 h-6' />
-                    {cartCount > 0 && (
-                      <span className='absolute -top-1 -right-1 bg-brand-rose text-white text-xs rounded-full w-5 h-5 flex items-center justify-center'>
-                        {cartCount}
-                      </span>
-                    )}
-                  </button>
-                  <button className='p-2 text-gray-700 hover:text-brand-lavender transition-colors'>
-                    <User className='w-6 h-6' />
-                  </button>
-                </div>
-              </div>
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </div>
     </header>
   );
-}
+};
+
+export default Header;
+

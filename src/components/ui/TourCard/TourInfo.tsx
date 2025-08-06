@@ -2,56 +2,88 @@ import React from "react";
 
 interface TourInfoProps {
   title: string;
-  description: string;
-  routing?: string;
-  tourStyle?: string;
-  tourStart?: string;
-  tourEnd?: string;
-  tripDuration?: string;
+  duration: string;
+  groupSize: string;
+  difficulty: string;
+  price: string;
 }
 
-export const TourInfo: React.FC<TourInfoProps> = ({
+const TourInfo: React.FC<TourInfoProps> = ({
   title,
-  description,
-  routing,
-  tourStyle,
-  tourStart,
-  tourEnd,
-  tripDuration,
+  duration,
+  groupSize,
+  difficulty,
+  price,
 }) => {
   return (
-    <div className='gap-3 w-full'>
-      <div className='gap-1 w-full'>
-        <h1 className='text-lg font-bold text-black line-clamp-2'>{title}</h1>
-
-        <div className='ml-2'>
-          {routing && (
-            <div className='text-sm text-neutral-800 flex items-center gap-2'>
-              <div className='size-1 bg-neutral-600 shrink-0 rounded-full' />
-              Routing: {routing}
-            </div>
-          )}
-          {tourStyle && (
-            <div className='text-sm text-neutral-800 flex items-center gap-2'>
-              <div className='size-1 bg-neutral-600 shrink-0 rounded-full' />
-              Tour Style: {tourStyle}
-            </div>
-          )}
-          {(tourStart || tourEnd) && (
-            <div className='text-sm text-neutral-800 flex items-center gap-2'>
-              <div className='size-1 bg-neutral-600 shrink-0 rounded-full' />
-              Tour Start: {tourStart} / Tour End: {tourEnd}
-            </div>
-          )}
-          {tripDuration && (
-            <div className='text-sm text-neutral-800 flex items-center gap-2'>
-              <div className='size-1 bg-neutral-600 shrink-0 rounded-full' />
-              Trip Duration: {tripDuration}
-            </div>
-          )}
+    <div className="flex flex-col" style={{ gap: "1vw" }}>
+      <h1
+        className="font-bold text-zinc-800"
+        style={{ fontSize: "clamp(22px, 2vw, 2.5rem)" }}
+      >
+        {title}
+      </h1>
+      <div className="flex flex-col" style={{ marginLeft: "0.5vw" }}>
+        <div className="flex items-center" style={{ gap: "0.5vw" }}>
+          <span
+            className="text-zinc-600"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            Duration:
+          </span>
+          <span
+            className="text-zinc-800"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            {duration}
+          </span>
         </div>
-        {/* <p className='mt-1 text-xs leading-5 text-zinc-700'>{description}</p> */}
+        <div className="flex items-center" style={{ gap: "0.5vw" }}>
+          <span
+            className="text-zinc-600"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            Group Size:
+          </span>
+          <span
+            className="text-zinc-800"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            {groupSize}
+          </span>
+        </div>
+        <div className="flex items-center" style={{ gap: "0.5vw" }}>
+          <span
+            className="text-zinc-600"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            Difficulty:
+          </span>
+          <span
+            className="text-zinc-800"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            {difficulty}
+          </span>
+        </div>
+        <div className="flex items-center" style={{ gap: "0.5vw" }}>
+          <span
+            className="text-zinc-600"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            Price:
+          </span>
+          <span
+            className="text-zinc-800 font-bold"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            {price}
+          </span>
+        </div>
       </div>
     </div>
   );
 };
+
+export default TourInfo;
+

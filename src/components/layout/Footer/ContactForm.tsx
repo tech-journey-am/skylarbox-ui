@@ -1,87 +1,94 @@
 "use client";
-import * as React from "react";
+import React from "react";
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 
-interface ContactFormProps {}
-
-export function ContactForm({}: ContactFormProps) {
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-  };
-
+const ContactForm = () => {
   return (
-    <section className='flex flex-col w-80 text-xs min-w-60'>
-      <h3 className='text-lg font-semibold leading-none text-brand-brown font-montserrat'>
-        Gửi tin nhắn cho chúng tôi
+    <div className="w-full" style={{ width: "17.5vw", minWidth: "15vw" }}>
+      <h3
+        className="font-semibold mb-4"
+        style={{ fontSize: "clamp(18px, 1.5vw, 2rem)", marginBottom: "1vw" }}
+      >
+        Liên hệ với chúng tôi
       </h3>
-      <form onSubmit={handleSubmit} className='mt-4 w-full'>
-        <div className='flex flex-col justify-center items-start p-3 w-full bg-white rounded border border-solid border-brand-lavender/30 focus-within:border-brand-lavender'>
-          <label className='flex gap-0.5 items-start'>
-            <span className='text-brand-gray'>Tên của bạn</span>
-            <span className='text-red-600'>*</span>
+
+      <form className="space-y-4" style={{ marginTop: "1.25vw", gap: "1vw" }}>
+        <div>
+          <label
+            className="block text-sm font-medium text-brand-gray mb-2"
+            style={{
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+              marginBottom: "0.5vw",
+            }}
+          >
+            Họ và tên
           </label>
-          <input
-            type='text'
-            name='name'
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-            className='w-full mt-1 bg-transparent border-none outline-none text-brand-brown'
+          <Input
+            type="text"
+            placeholder="Nhập họ và tên"
+            style={{
+              padding: "0.75vw 1vw",
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+            }}
           />
         </div>
 
-        <div className='flex flex-col justify-center items-start p-3 mt-3 w-full whitespace-nowrap bg-white rounded border border-solid border-brand-lavender/30 focus-within:border-brand-lavender'>
-          <label className='flex gap-0.5 items-start'>
-            <span className='text-brand-gray'>Email</span>
-            <span className='text-red-600'>*</span>
+        <div>
+          <label
+            className="block text-sm font-medium text-brand-gray mb-2"
+            style={{
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+              marginBottom: "0.5vw",
+            }}
+          >
+            Email
           </label>
-          <input
-            type='email'
-            name='email'
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            className='w-full mt-1 bg-transparent border-none outline-none text-brand-brown'
+          <Input
+            type="email"
+            placeholder="Nhập email"
+            style={{
+              padding: "0.75vw 1vw",
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+            }}
           />
         </div>
 
-        <div className='flex flex-col justify-center items-start p-3 mt-3 w-full bg-white rounded border border-solid border-brand-lavender/30 focus-within:border-brand-lavender'>
-          <label className='flex gap-0.5 items-start'>
-            <span className='text-brand-gray'>Số điện thoại</span>
-            <span className='text-red-600'>*</span>
+        <div>
+          <label
+            className="block text-sm font-medium text-brand-gray mb-2"
+            style={{
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+              marginBottom: "0.5vw",
+            }}
+          >
+            Tin nhắn
           </label>
-          <input
-            type='tel'
-            name='phone'
-            value={formData.phone}
-            onChange={handleInputChange}
-            required
-            className='w-full mt-1 bg-transparent border-none outline-none text-brand-brown'
+          <textarea
+            placeholder="Nhập tin nhắn"
+            className="w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-lavender focus:border-transparent resize-none"
+            rows={4}
+            style={{
+              padding: "0.75vw 1vw",
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+            }}
           />
         </div>
 
-        <button
-          type='submit'
-          className='overflow-hidden gap-1.5 self-start px-5 py-2 mt-4 leading-loose text-center text-brand-lavender rounded border border-brand-lavender border-solid hover:bg-brand-lavender hover:text-white transition-colors'
+        <Button
+          type="submit"
+          className="w-full bg-brand-lavender hover:bg-brand-lavender/90"
+          style={{
+            marginTop: "1vw",
+            fontSize: "clamp(16px, 1vw, 1.25rem)",
+          }}
         >
-          Gửi ngay
-        </button>
+          Gửi tin nhắn
+        </Button>
       </form>
-    </section>
+    </div>
   );
-}
+};
+
+export default ContactForm;
+

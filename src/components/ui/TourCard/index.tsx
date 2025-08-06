@@ -1,54 +1,94 @@
-import { TourInfo } from "./TourInfo";
-import { DecorativeDivider } from "./DecorativeDivider";
-import { PricingSection } from "./PricingSection";
-import { Product } from "@/types";
-import Image from "next/image";
-import { BLUR_IMAGE } from "@/components/constants";
+import React from "react";
+import { motion } from "framer-motion";
+import TourInfo from "./TourInfo";
+import PricingSection from "./PricingSection";
 
-export const TourCard: React.FC<Product> = ({
-  name = "Orchid Classic Cruise",
-  description = "Orchid Classic Cruise is a 2-day, 1-night cruise that offers a unique experience of Halong Bay. The cruise includes a visit to the Titov Island, Sung Sot Cave, and Luon Cave.",
-  price = 299,
-  image = "/images/home/affordable/image_affordable1.png",
-  tripDuration = "2 Days 1 Night",
-  routing = "Ha Noi - Ha Long - Ha Noi",
-  tourStyle = "Nature, Culture & History Tour",
-  tourStart = "In Ha Noi",
-  tourEnd = "In Ha Noi",
+interface TourCardProps {
+  title: string;
+  duration: string;
+  groupSize: string;
+  difficulty: string;
+  price: string;
+  originalPrice?: string;
+  discount?: string;
+  image: string;
+  description: string;
+}
+
+const TourCard: React.FC<TourCardProps> = ({
+  title,
+  duration,
+  groupSize,
+  difficulty,
+  price,
+  originalPrice,
+  discount,
+  image,
+  description,
 }) => {
   return (
-    <div className='flex flex-col items-start group w-full cursor-pointer'>
-      <article className='overflow-hidden p-4 bg-white rounded-lg shadow-[0px_0px_0px_2px_rgba(230,243,255,1.00)] outline outline-1 outline-offset-[-1px] outline-blue-100 w-full'>
-        <div className='overflow-hidden relative size-full rounded aspect-[4/3] '>
-          <Image
-            src={image}
-            className='object-cover group-hover:scale-110 transition-all duration-300 size-full'
-            alt={name}
-            fill
-            sizes='(max-width: 768px) 100vw, 33vw'
-            placeholder='blur'
-            blurDataURL={BLUR_IMAGE}
-          />
-        </div>
-        <div className='flex flex-col mt-4'>
-          <TourInfo
-            title={name}
-            description={description}
-            routing={routing}
-            tourStyle={tourStyle}
-            tourStart={tourStart}
-            tourEnd={tourEnd}
-            tripDuration={tripDuration || "2 Days 1 Night"}
-          />
-          <DecorativeDivider />
-          <PricingSection
-            price={price.toString() + "$"}
-            tripDuration={tripDuration || "2 Days 1 Night"}
-          />
-        </div>
-      </article>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+    >
+      <div className="relative">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-48 object-cover"
+          style={{ height: "12vw", minHeight: "192px" }}
+        />
+        {discount && (
+          <div
+            className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium"
+            style={{
+              padding: "0.25vw 0.75vw",
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+            }}
+          >
+            {discount}
+          </div>
+        )}
+      </div>
+
+      <div className="p-6" style={{ padding: "1.5vw" }}>
+        <h1
+          className="font-bold mb-4"
+          style={{ fontSize: "clamp(22px, 2vw, 2.5rem)", marginBottom: "1vw" }}
+        >
+          {title}
+        </h1>
+
+        <p
+          className="text-gray-600 mb-6"
+          style={{
+            fontSize: "clamp(16px, 1vw, 1.25rem)",
+            marginBottom: "1.5vw",
+          }}
+        >
+          {description}
+        </p>
+
+        <TourInfo
+          title={title}
+          duration={duration}
+          groupSize={groupSize}
+          difficulty={difficulty}
+          price={price}
+        />
+
+        <PricingSection
+          price={price}
+          originalPrice={originalPrice}
+          discount={discount}
+        />
+      </div>
+    </motion.div>
   );
 };
 
 export default TourCard;
+

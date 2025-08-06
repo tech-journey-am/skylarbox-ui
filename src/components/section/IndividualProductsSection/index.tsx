@@ -1,79 +1,120 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { ProductCardSkeleton } from "@/components/ui/Skeleton";
-import { useMultipleDemoLoading } from "@/hooks/useDemoLoading";
-import ProductImageCard from "@/components/ui/ProductImageCard";
-import { BLUR_DATA_URL } from "@/components/constants";
 import { individualProducts } from "@/data/products";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-export default function IndividualProductsSection() {
-  const { isItemLoaded } = useMultipleDemoLoading(
-    individualProducts.length,
-    1000
-  );
-
-  const addToCart = () => {
-    // Add to cart functionality
-  };
-
+const IndividualProductsSection = () => {
   return (
-    <section className='py-20 bg-cream-50'>
-      <div className='container mx-auto px-4'>
-        <div className='text-center mb-16'>
-          <h2 className='text-3xl md:text-4xl font-montserrat font-bold text-brand-brown mb-4'>
+    <section className="bg-cream-50" style={{ padding: "5vw 0" }}>
+      <div className="container mx-auto" style={{ padding: "0 1vw" }}>
+        <div className="text-center" style={{ marginBottom: "4vw" }}>
+          <h2
+            className="font-bold mb-4"
+            style={{
+              fontSize: "clamp(22px, 2vw, 2.5rem)",
+              marginBottom: "1vw",
+            }}
+          >
             Sản phẩm lẻ
           </h2>
-          <p className='text-brand-gray max-w-2xl mx-auto'>
+          <p
+            className="text-brand-gray"
+            style={{
+              maxWidth: "50vw",
+              margin: "0 auto",
+              fontSize: "clamp(16px, 1vw, 1.25rem)",
+            }}
+          >
             Khám phá các sản phẩm chữa lành được chọn lọc kỹ lưỡng
           </p>
         </div>
 
-        <div className='flex overflow-x-auto space-x-6 pb-6 max-md:scrollbar-hide'>
+        <div
+          className="flex overflow-x-auto pb-6"
+          style={{ gap: "1.5vw", paddingBottom: "1.5vw" }}
+        >
           {individualProducts.map((product, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
+              key={product.id}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className='flex-shrink-0 w-72'
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex-shrink-0"
+              style={{ width: "18vw", minWidth: "280px" }}
             >
-              {!isItemLoaded(index) && <ProductCardSkeleton />}
               <div
-                className={`bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-shadow ${
-                  !isItemLoaded(index) ? "hidden" : "block"
-                }`}
+                className="relative"
+                style={{
+                  height: "12vw",
+                  marginBottom: "1vw",
+                  minHeight: "180px",
+                }}
               >
-                <div className='h-48 mb-4 relative overflow-hidden rounded-xl'>
-                  <div className='relative w-full h-full overflow-hidden rounded-xl'>
-                    <Image
-                      src={product.productImage}
-                      alt={product.name}
-                      fill
-                      className='object-cover'
-                      placeholder='blur'
-                      blurDataURL={BLUR_DATA_URL}
-                    />
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+                {product.category && (
+                  <div
+                    className="absolute bottom-2 left-2 bg-brand-lavender text-white rounded-full px-2 py-1 text-xs"
+                    style={{
+                      bottom: "0.5vw",
+                      left: "0.5vw",
+                      padding: "0.25vw 0.5vw",
+                      fontSize: "clamp(16px, 1vw, 1.25rem)",
+                    }}
+                  >
+                    {product.category}
                   </div>
-                  <div className='absolute bottom-2 left-2 bg-white/90 px-2 py-1 rounded-full z-10'>
-                    <p className='text-xs text-brand-gray font-medium'>
-                      {product.category}
-                    </p>
-                  </div>
-                </div>
-                <h3 className='text-lg font-semibold text-brand-brown mb-2'>
+                )}
+              </div>
+              <div className="p-6" style={{ padding: "1.5vw" }}>
+                <h3
+                  className="font-bold mb-2"
+                  style={{
+                    fontSize: "clamp(18px, 1.5vw, 2rem)",
+                    marginBottom: "0.5vw",
+                  }}
+                >
                   {product.name}
                 </h3>
-                <p className='text-2xl font-bold text-brand-lavender mb-4'>
-                  {product.price}
+                <p
+                  className="text-brand-gray mb-4"
+                  style={{
+                    fontSize: "clamp(16px, 1vw, 1.25rem)",
+                    marginBottom: "1vw",
+                  }}
+                >
+                  {product.description}
                 </p>
-                <button
-                  onClick={addToCart}
-                  className='w-full bg-brand-rose text-white py-2 rounded-full hover:bg-brand-rose/90 transition-colors font-medium'
+                <div className="flex justify-between items-center mb-4">
+                  <span
+                    className="text-2xl font-bold text-brand-lavender"
+                    style={{ fontSize: "clamp(18px, 1.5vw, 2rem)" }}
+                  >
+                    {product.price}
+                  </span>
+                  <span
+                    className="text-sm text-brand-gray"
+                    style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+                  >
+                    {product.rating} ⭐
+                  </span>
+                </div>
+                <Button
+                  className="w-full"
+                  style={{
+                    padding: "0.5vw 0",
+                    fontSize: "clamp(16px, 1vw, 1.25rem)",
+                  }}
                 >
                   Thêm vào giỏ hàng
-                </button>
+                </Button>
               </div>
             </motion.div>
           ))}
@@ -81,4 +122,7 @@ export default function IndividualProductsSection() {
       </div>
     </section>
   );
-}
+};
+
+export default IndividualProductsSection;
+

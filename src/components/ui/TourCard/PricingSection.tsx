@@ -2,19 +2,42 @@ import React from "react";
 
 interface PricingSectionProps {
   price: string;
-  tripDuration: string;
+  originalPrice?: string;
+  discount?: string;
 }
 
-export const PricingSection: React.FC<PricingSectionProps> = ({
+const PricingSection: React.FC<PricingSectionProps> = ({
   price,
-  tripDuration,
+  originalPrice,
+  discount,
 }) => {
   return (
-    <div className='mt-3 text-4xl'>
-      <p className='text-center'>
-        <span className='text-blue-800 font-bold'>{price}</span>
-        <span className='text-base text-neutral-800'>/{tripDuration}</span>
-      </p>
+    <div className="flex flex-col items-end" style={{ marginTop: "1vw" }}>
+      {originalPrice && discount && (
+        <div className="flex items-center" style={{ gap: "0.5vw" }}>
+          <span
+            className="text-zinc-400 line-through"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            {originalPrice}
+          </span>
+          <span
+            className="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-medium"
+            style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+          >
+            {discount}
+          </span>
+        </div>
+      )}
+      <span
+        className="text-2xl font-bold text-zinc-800"
+        style={{ fontSize: "clamp(16px, 1vw, 1.25rem)" }}
+      >
+        {price}
+      </span>
     </div>
   );
 };
+
+export default PricingSection;
+

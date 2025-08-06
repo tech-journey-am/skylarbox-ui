@@ -11,24 +11,48 @@ export default function ProductSkeleton({ className }: ProductSkeletonProps) {
         className || ""
       }`}
     >
-      <Skeleton className='aspect-[4/3]' />
-      <div className='p-6'>
-        <Skeleton className='h-7 mb-2' />
-        <div className='space-y-2 mb-4'>
+      <Skeleton className="aspect-[4/3]" />
+      <div style={{ padding: "1.5vw" }}>
+        <Skeleton
+          style={{ height: "1.75vw", marginBottom: "0.5vw", minHeight: "28px" }}
+        />
+        <div style={{ gap: "0.5vw", marginBottom: "1vw" }}>
           <Skeleton count={3} />
         </div>
-        <div className='flex justify-between items-end'>
-          <div className='space-y-1'>
-            <Skeleton width={80} />
-            <Skeleton width={96} height={32} />
-            <Skeleton width={64} />
+        <div className="flex justify-between items-end">
+          <div style={{ gap: "0.25vw" }}>
+            <Skeleton style={{ width: "5vw", minWidth: "80px" }} />
+            <Skeleton
+              style={{
+                width: "6vw",
+                height: "2vw",
+                minWidth: "96px",
+                minHeight: "32px",
+              }}
+            />
+            <Skeleton style={{ width: "4vw", minWidth: "64px" }} />
           </div>
-          <div className='flex flex-col items-end gap-3'>
-            <Skeleton width={24} height={24} />
-            <Skeleton width={96} height={32} />
+          <div className="flex flex-col items-end" style={{ gap: "0.75vw" }}>
+            <Skeleton
+              style={{
+                width: "1.5vw",
+                height: "1.5vw",
+                minWidth: "24px",
+                minHeight: "24px",
+              }}
+            />
+            <Skeleton
+              style={{
+                width: "6vw",
+                height: "2vw",
+                minWidth: "96px",
+                minHeight: "32px",
+              }}
+            />
           </div>
         </div>
       </div>
     </div>
   );
 }
+

@@ -1,16 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-interface VideoSlide {
-  id: number;
-  video: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  showText?: boolean;
-}
+import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import Button from "@/components/ui/button";
+import { VideoSlide } from "@/data/heroSlides";
 
 interface VideoHeroProps {
   slides: VideoSlide[];
@@ -20,186 +14,262 @@ interface VideoHeroProps {
   showArrows?: boolean;
 }
 
-export default function VideoHero({
+const VideoHero: React.FC<VideoHeroProps> = ({
   slides,
-  autoPlayInterval = 6000,
+  autoPlayInterval = 5000,
   showNavigation = true,
   showProgress = true,
   showArrows = true,
-}: VideoHeroProps) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Auto play functionality
   useEffect(() => {
-    if (isAutoPlaying) {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-      }, autoPlayInterval);
+    const video = videoRef.current;
+    if (!video) return;
 
-      return () => clearInterval(interval);
+    const updateProgress = () => {
+      if (video.duration) {
+        setProgress((video.currentTime / video.duration) * 100);
+      }
+    };
+
+    video.addEventListener("timeupdate", updateProgress);
+    return () => video.removeEventListener("timeupdate", updateProgress);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      video.play().catch(() => setIsPlaying(false));
+    } else {
+      video.pause();
     }
-  }, [isAutoPlaying, slides.length, autoPlayInterval]);
+  }, [isPlaying]);
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-    setIsAutoPlaying(false);
-    // Resume auto play after 10 seconds
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
+  // Auto-advance slides
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
+      setProgress(0);
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [isPlaying, autoPlayInterval, slides.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+    setProgress(0);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    setProgress(0);
   };
 
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const currentSlide = slides[currentIndex];
+
   return (
-    <section className='relative h-screen overflow-hidden group'>
-      {/* Video Background */}
-      <AnimatePresence mode='wait'>
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0.3 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0.3 }}
-          transition={{ duration: 1 }}
-          className='absolute inset-0'
+    <section
+      className="relative h-screen overflow-hidden"
+      style={{ height: "100vh" }}
+    >
+      <div
+        className="container mx-auto relative z-10 h-full flex items-center"
+        style={{ padding: "0 2vw" }}
+      >
+        <div
+          className="max-w-4xl hero-container"
+          style={{
+            maxWidth: "1200px",
+            minWidth: "300px",
+            margin: "0 auto",
+          }}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className='w-full h-full object-cover'
-          >
-            <source src={slides[currentSlide].video} type='video/mp4' />
-          </video>
-
-          {/* Overlay */}
-          <div className='absolute inset-0 bg-black/40' />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Content - Only show for first slide */}
-      {slides[currentSlide].showText && (
-        <div className='relative z-10 h-full flex items-center'>
-          <div className='container mx-auto px-4'>
-            <AnimatePresence mode='wait'>
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0.3, y: 50 }}
+          {currentSlide.showText && (
+            <>
+              <motion.h1
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0.3, y: -50 }}
+                transition={{ duration: 0.8 }}
+                className="text-white font-bold mb-6 hero-title"
+                style={{
+                  lineHeight: "1.1",
+                  marginBottom: "2rem",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {currentSlide.title}
+              </motion.h1>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-white/90 mb-4 font-medium hero-subtitle"
+                style={{
+                  lineHeight: "1.2",
+                  marginBottom: "1.5rem",
+                  textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                {currentSlide.subtitle}
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className='max-w-4xl text-white'
+                className="text-white/90 mb-8 leading-relaxed hero-desc"
+                style={{
+                  lineHeight: "1.5",
+                  marginBottom: "2.5rem",
+                  textShadow: "1px 1px 2px rgba(0,0,0,0.3)",
+                  letterSpacing: "0.005em",
+                }}
               >
-                <h1 className='text-5xl md:text-7xl hero-title mb-6 leading-tight'>
-                  {slides[currentSlide].title}
-                </h1>
-                <h2 className='text-2xl md:text-3xl hero-subtitle mb-4 text-brand-lavender'>
-                  {slides[currentSlide].subtitle}
-                </h2>
-                <p className='text-lg md:text-xl text-gray-200 mb-8 max-w-2xl hero-description'>
-                  {slides[currentSlide].description}
-                </p>
-                <div className='flex flex-col sm:flex-row gap-4'>
-                  <button className='btn-cta text-lg px-8 py-4'>
-                    Khám phá ngay
-                  </button>
-                  <button className='btn-cta-secondary text-lg px-8 py-4'>
-                    Tham gia cộng đồng
-                  </button>
-                </div>
+                {currentSlide.description}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex gap-4 flex-wrap hero-btns"
+                style={{ gap: "2rem" }}
+              >
+                <Button className="bg-brand-lavender hover:bg-brand-lavender/90 hero-btn">
+                  Khám phá ngay
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 hero-btn"
+                >
+                  Tìm hiểu thêm
+                </Button>
               </motion.div>
-            </AnimatePresence>
-          </div>
+            </>
+          )}
         </div>
-      )}
+      </div>
 
-      {/* Navigation Buttons - Horizontal Bar Style */}
-      {showNavigation && (
-        <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20'>
-          <div className='flex gap-3 bg-white/10 backdrop-blur-md rounded-full px-4 py-2'>
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-12 h-12 rounded-full transition-all duration-300 flex items-center justify-center ${
-                  index === currentSlide
-                    ? "bg-white text-black shadow-lg"
-                    : "bg-white/20 text-white hover:bg-white/40"
-                }`}
-              >
-                <span className='text-sm font-semibold'>{index + 1}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          src={currentSlide.video}
+          loop
+          muted
+          playsInline
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
 
-      {/* Arrow Navigation */}
+      {/* Navigation Buttons */}
       {showArrows && (
         <>
           <button
             onClick={prevSlide}
-            className='absolute left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100'
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+            style={{
+              padding: "min(1.5vw, 0.75rem)",
+              minWidth: "min(4vw, 3rem)",
+              minHeight: "min(4vw, 3rem)",
+            }}
           >
-            <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M15 19l-7-7 7-7'
-              />
-            </svg>
+            <ChevronLeft
+              className="w-6 h-6 text-white"
+              style={{
+                width: "min(2vw, 1.5rem)",
+                height: "min(2vw, 1.5rem)",
+              }}
+            />
           </button>
 
           <button
             onClick={nextSlide}
-            className='absolute right-8 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100'
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+            style={{
+              padding: "min(1.5vw, 0.75rem)",
+              minWidth: "min(4vw, 3rem)",
+              minHeight: "min(4vw, 3rem)",
+            }}
           >
-            <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M9 5l7 7-7 7'
-              />
-            </svg>
+            <ChevronRight
+              className="w-6 h-6 text-white"
+              style={{
+                width: "min(2vw, 1.5rem)",
+                height: "min(2vw, 1.5rem)",
+              }}
+            />
           </button>
         </>
       )}
 
+      {/* Play/Pause Button */}
+      {showNavigation && (
+        <button
+          onClick={togglePlay}
+          className="absolute bottom-8 left-8 z-20 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+          style={{
+            padding: "min(1.5vw, 0.75rem)",
+            minWidth: "min(4vw, 3rem)",
+            minHeight: "min(4vw, 3rem)",
+          }}
+        >
+          {isPlaying ? (
+            <Pause
+              className="w-6 h-6 text-white"
+              style={{
+                width: "min(2vw, 1.5rem)",
+                height: "min(2vw, 1.5rem)",
+              }}
+            />
+          ) : (
+            <Play
+              className="w-6 h-6 text-white"
+              style={{
+                width: "min(2vw, 1.5rem)",
+                height: "min(2vw, 1.5rem)",
+              }}
+            />
+          )}
+        </button>
+      )}
+
       {/* Progress Bar */}
       {showProgress && (
-        <div className='absolute bottom-0 left-0 right-0 h-1 bg-white/20'>
-          <motion.div
-            className='h-full bg-white'
-            initial={{ width: 0 }}
-            animate={{ width: isAutoPlaying ? "100%" : "0%" }}
-            transition={{
-              duration: isAutoPlaying ? autoPlayInterval / 1000 : 0,
-            }}
-          />
+        <div className="absolute bottom-0 left-0 right-0 z-20">
+          <div
+            className="h-1 bg-white/20"
+            style={{ height: "min(0.5vw, 4px)" }}
+          >
+            <div
+              className="h-full bg-brand-lavender transition-all duration-300"
+              style={{
+                width: `${progress}%`,
+                height: "min(0.5vw, 4px)",
+              }}
+            />
+          </div>
         </div>
       )}
     </section>
   );
-}
+};
+
+export default VideoHero;
+
