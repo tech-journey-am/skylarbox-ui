@@ -19,11 +19,11 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className='text-center max-w-4xl mx-auto'
           >
-            <h1 className='text-4xl md:text-6xl font-montserrat font-medium text-brand-brown mb-6 leading-tight'>
+            <h1 className='text-4xl md:text-6xl font-serif font-medium text-brand-brown mb-6 leading-tight'>
               Câu chuyện của{" "}
               <span className='text-brand-lavender'>Skylarbox</span>
             </h1>
-            <p className='text-xl text-brand-gray mb-8 leading-relaxed'>
+            <p className='text-xl text-brand-gray mb-8 leading-relaxed italic'>
               Mỗi người tìm bình yên theo cách riêng
             </p>
             <div className='w-24 h-24 bg-gradient-to-br from-brand-lavender/30 to-brand-yellow/30 rounded-full flex items-center justify-center mx-auto mb-8'>
@@ -44,7 +44,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className='mb-16'
             >
-              <h2 className='text-3xl md:text-4xl font-montserrat font-medium text-brand-brown mb-8 text-center'>
+              <h2 className='text-3xl md:text-4xl font-serif font-medium text-brand-brown mb-8 text-center'>
                 Câu chuyện ra đời của Skylarbox
               </h2>
               <div className='bg-gradient-to-br from-brand-lavender/10 to-brand-yellow/10 rounded-2xl p-8 mb-8'>
@@ -76,14 +76,14 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className='mb-16'
             >
-              <h3 className='text-2xl md:text-3xl font-montserrat font-medium text-brand-brown mb-6'>
+              <h3 className='text-2xl md:text-3xl font-serif font-medium text-brand-brown mb-6'>
                 Sứ mệnh mà chúng tôi ôm ấp
               </h3>
               <div className='bg-gradient-to-br from-brand-sage/10 to-brand-cream rounded-2xl p-8 mb-6'>
                 <p className='text-lg text-brand-brown font-medium mb-4'>
                   ✨ Một con người bình an sẽ tạo ra một thế giới bình an.
                 </p>
-                <p className='text-brand-gray leading-relaxed'>
+                <p className='text-brand-gray leading-relaxed italic'>
                   Khi một người tìm được sự yên ổn trong tâm hồn, họ sẽ lan tỏa
                   năng lượng tích cực đến những người xung quanh. Và khi nhiều
                   người cùng bình an như vậy, thế giới sẽ tự nhiên trở nên nhiều
@@ -114,7 +114,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className='mb-16'
             >
-              <h3 className='text-2xl md:text-3xl font-montserrat font-medium text-brand-brown mb-6'>
+              <h3 className='text-2xl md:text-3xl font-serif font-medium text-brand-brown mb-6'>
                 Lý do chúng tôi tồn tại
               </h3>
               <div className='bg-gradient-to-br from-brand-yellow/10 to-brand-rose/10 rounded-2xl p-8 mb-6'>
@@ -164,7 +164,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className='text-center mb-16'
             >
-              <h2 className='text-3xl md:text-4xl font-montserrat font-medium text-brand-brown mb-6'>
+              <h2 className='text-3xl md:text-4xl font-serif font-medium text-brand-brown mb-6'>
                 Giá trị cốt lõi của Skylarbox
               </h2>
             </motion.div>
@@ -181,10 +181,10 @@ export default function AboutPage() {
                 <div className='w-16 h-16 bg-gradient-to-br from-brand-lavender/20 to-brand-lavender/40 rounded-full flex items-center justify-center mb-6'>
                   <span className='text-2xl'>💎</span>
                 </div>
-                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                <h3 className='text-xl font-serif font-medium text-brand-brown mb-4'>
                   Nguyên bản – Authenticity
                 </h3>
-                <p className='text-brand-gray leading-relaxed'>
+                <p className='text-brand-gray leading-relaxed italic'>
                   Chúng tôi tin rằng sự chân thật có một sức mạnh rất riêng –
                   nhẹ nhàng mà sâu sắc. Skylarbox không cố gắng trở nên hoàn hảo
                   hay màu mè. Mỗi hộp quà, mỗi thông điệp đều được tạo ra từ
@@ -203,10 +203,10 @@ export default function AboutPage() {
                 <div className='w-16 h-16 bg-gradient-to-br from-brand-rose/20 to-brand-rose/40 rounded-full flex items-center justify-center mb-6'>
                   <span className='text-2xl'>🌸</span>
                 </div>
-                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                <h3 className='text-xl font-serif font-medium text-brand-brown mb-4'>
                   Dịu dàng – Gentle
                 </h3>
-                <p className='text-brand-gray leading-relaxed'>
+                <p className='text-brand-gray leading-relaxed italic'>
                   Skylarbox được sinh ra từ mong muốn: "Giá mà ai đó có thể dịu
                   dàng hơn với mình…" Và rồi, chúng tôi chọn trở thành "ai đó"
                   ấy – trong một chiếc nến ấm áp, một thẻ bài nhỏ xinh, một lá
@@ -225,10 +225,10 @@ export default function AboutPage() {
                 <div className='w-16 h-16 bg-gradient-to-br from-brand-yellow/20 to-brand-yellow/40 rounded-full flex items-center justify-center mb-6'>
                   <span className='text-2xl'>✨</span>
                 </div>
-                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                <h3 className='text-xl font-serif font-medium text-brand-brown mb-4'>
                   Sống động – Real & Vibrant
                 </h3>
-                <p className='text-brand-gray leading-relaxed'>
+                <p className='text-brand-gray leading-relaxed italic'>
                   Chữa lành không nhất thiết phải lặng lẽ hay đơn điệu. Với
                   Skylarbox, hành trình tìm về bình an cũng có thể rực rỡ, sáng
                   tạo, đầy màu sắc – như chính cuộc sống đang diễn ra xung quanh
@@ -247,10 +247,10 @@ export default function AboutPage() {
                 <div className='w-16 h-16 bg-gradient-to-br from-brand-sage/20 to-brand-sage/40 rounded-full flex items-center justify-center mb-6'>
                   <span className='text-2xl'>🌿</span>
                 </div>
-                <h3 className='text-xl font-montserrat font-medium text-brand-brown mb-4'>
+                <h3 className='text-xl font-serif font-medium text-brand-brown mb-4'>
                   Lành – Healing
                 </h3>
-                <p className='text-brand-gray leading-relaxed'>
+                <p className='text-brand-gray leading-relaxed italic'>
                   "Lành" không phải là đã hoàn toàn ổn, mà là đang nhẹ lại từng
                   chút một mỗi ngày. Skylarbox ở đây để nhắc bạn một điều quan
                   trọng: bạn không cần phải hoàn hảo mới xứng đáng với bình yên.
@@ -275,7 +275,7 @@ export default function AboutPage() {
               <div className='w-20 h-20 bg-gradient-to-br from-brand-lavender/30 to-brand-yellow/30 rounded-full flex items-center justify-center mx-auto mb-8'>
                 <span className='text-3xl'>☁️</span>
               </div>
-              <h2 className='text-2xl md:text-3xl font-montserrat font-medium text-brand-brown mb-8'>
+              <h2 className='text-2xl md:text-3xl font-serif font-medium text-brand-brown mb-8'>
                 Một lời nhắn nhỏ từ Skylarbox
               </h2>
               <div className='space-y-6 text-brand-gray leading-relaxed text-lg'>
@@ -313,10 +313,10 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className='text-3xl md:text-4xl font-montserrat font-medium text-brand-brown mb-6'>
+              <h2 className='text-3xl md:text-4xl font-serif font-medium text-brand-brown mb-6'>
                 Bắt đầu hành trình của bạn
               </h2>
-              <p className='text-brand-gray mb-8 text-lg'>
+              <p className='text-brand-gray mb-8 text-lg italic'>
                 Khám phá các hộp quà chữa lành và tìm thấy bình yên theo cách
                 riêng của mình
               </p>

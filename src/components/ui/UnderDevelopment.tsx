@@ -37,7 +37,7 @@ export function UnderDevelopment({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className='text-2xl font-montserrat font-bold text-brand-brown mb-4'
+            className='text-2xl font-serif font-bold text-brand-brown mb-4'
           >
             {title}
           </motion.h1>
@@ -47,7 +47,7 @@ export function UnderDevelopment({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className='text-brand-gray mb-8 leading-relaxed'
+            className='text-brand-gray mb-8 leading-relaxed italic'
           >
             {description}
           </motion.p>
@@ -65,7 +65,7 @@ export function UnderDevelopment({
                 style={{ width: "65%" }}
               ></div>
             </div>
-            <p className='text-sm text-brand-gray'>65% hoàn thành</p>
+            <p className='text-sm text-brand-gray italic'>65% hoàn thành</p>
           </motion.div>
 
           {/* Back to Home Button */}
@@ -90,7 +90,7 @@ export function UnderDevelopment({
             transition={{ duration: 0.6, delay: 0.8 }}
             className='mt-6 pt-6 border-t border-gray-100'
           >
-            <p className='text-xs text-brand-gray'>
+            <p className='text-xs text-brand-gray italic'>
               Theo dõi chúng tôi để cập nhật thông tin mới nhất
             </p>
           </motion.div>

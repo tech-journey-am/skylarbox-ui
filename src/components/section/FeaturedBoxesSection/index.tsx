@@ -1,54 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BoxCardSkeleton } from "@/components/ui/Skeleton";
-import { useMultipleDemoLoading } from "@/hooks/useDemoLoading";
 import ProductImageCard from "@/components/ui/ProductImageCard";
 import { featuredBoxes } from "@/data/featuredBoxes";
 
 export default function FeaturedBoxesSection() {
-  const { isItemLoaded } = useMultipleDemoLoading(featuredBoxes.length, 1000);
-
   return (
-    <section className='py-20 bg-product-gradient'>
+    <section className='py-vw-4 bg-product-gradient'>
       <div className='container mx-auto px-4'>
-        <div className='text-center mb-16'>
-          <h2 className='text-3xl md:text-4xl font-montserrat font-bold text-brand-brown mb-4'>
-            Các hộp chủ đề Skylarbox
-          </h2>
-          <p className='text-brand-gray max-w-2xl mx-auto'>
+        <div className='text-center mb-vw-4'>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className='text-[3vw] uppercase font-serif font-bold text-neutral-700 mb-vw-1'
+          >
+            Các hộp chủ đề <span className='text-brand-rose'>Skylarbox</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className='text-brand-gray text-[1.2vw] text-center italic'
+          >
             Mỗi hộp quà được thiết kế với chủ đề riêng biệt, mang đến trải
             nghiệm chữa lành độc đáo
-          </p>
+          </motion.p>
         </div>
 
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-vw-2 mb-vw-4'>
           {featuredBoxes.map((box, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.7,
+                ease: "easeOut",
+                delay: 0.15 * index,
+              }}
               className='group cursor-pointer'
             >
-              {!isItemLoaded(index) && <BoxCardSkeleton />}
               <div
-                className={`rounded-2xl h-96 relative overflow-hidden transition-transform group-hover:scale-105 ${
-                  !isItemLoaded(index) ? "hidden" : "block"
-                }`}
+                className={`rounded-2xl relative h-full overflow-hidden transition-transform group-hover:scale-105`}
               >
                 <ProductImageCard
                   giftImage={box.giftImage}
                   productImage={box.productImage}
-                  giftIcon={box.giftIcon}
                   alt={box.name}
                   className='w-full h-full'
-                  showDetails={true}
-                  giftTitle={`${box.name} - ${box.price}`}
-                  giftSubtitle={box.description}
-                  productTitle={`${box.name} - ${box.price}`}
-                  productSubtitle={box.description}
-                  isHoverToOpen={false}
+                  title={box.name}
+                  description={box.description}
+                  price={box.price}
+                  badge={box.badge}
+                  onCardClick={() => {
+                    // Handle card click - could navigate to product detail page
+                    console.log(`Clicked on ${box.name}`);
+                  }}
                 />
               </div>
             </motion.div>
@@ -56,9 +67,17 @@ export default function FeaturedBoxesSection() {
         </div>
 
         <div className='text-center'>
-          <button className='bg-brand-rose text-white px-8 py-3 rounded-full hover:bg-brand-rose/90 transition-colors font-medium'>
+          <motion.button
+            className='bg-brand-rose text-white px-[1.2vw] py-[0.6vw] rounded-full text-[1.2vw] font-semibold hover:bg-brand-rose/90 transition-colors duration-300'
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          >
             Xem tất cả các hộp chủ đề
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

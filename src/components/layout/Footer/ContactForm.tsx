@@ -1,4 +1,6 @@
 "use client";
+import { IconSend } from "@/components/icon";
+import { motion } from "framer-motion";
 import * as React from "react";
 
 interface ContactFormProps {}
@@ -25,62 +27,50 @@ export function ContactForm({}: ContactFormProps) {
   };
 
   return (
-    <section className='flex flex-col w-80 text-xs min-w-60'>
-      <h3 className='text-lg font-semibold leading-none text-brand-brown font-montserrat'>
-        Gửi tin nhắn cho chúng tôi
+    <section className='flex flex-col w-[20vw] text-xs min-w-[20vw]'>
+      <h3 className='text-[1.6vw] font-semibold leading-none text-neutral-700 font-serif'>
+        Liên hệ
       </h3>
-      <form onSubmit={handleSubmit} className='mt-4 w-full'>
-        <div className='flex flex-col justify-center items-start p-3 w-full bg-white rounded border border-solid border-brand-lavender/30 focus-within:border-brand-lavender'>
-          <label className='flex gap-0.5 items-start'>
-            <span className='text-brand-gray'>Tên của bạn</span>
-            <span className='text-red-600'>*</span>
-          </label>
-          <input
-            type='text'
-            name='name'
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-            className='w-full mt-1 bg-transparent border-none outline-none text-brand-brown'
-          />
-        </div>
+      <form
+        onSubmit={handleSubmit}
+        className='mt-vw-2 w-full text-[1vw] space-y-vw-1'
+      >
+        <input
+          type='text'
+          name='name'
+          value={formData.name}
+          onChange={handleInputChange}
+          placeholder='Nhập tên của bạn'
+          className='overflow-hidden px-vw-1 py-[.6vw] bg-white rounded-[1vw] border border-solid border-brand-lavender/30 min-w-60 text-brand-gray w-[20vw] focus:outline-none focus:border-brand-lavender'
+        />
 
-        <div className='flex flex-col justify-center items-start p-3 mt-3 w-full whitespace-nowrap bg-white rounded border border-solid border-brand-lavender/30 focus-within:border-brand-lavender'>
-          <label className='flex gap-0.5 items-start'>
-            <span className='text-brand-gray'>Email</span>
-            <span className='text-red-600'>*</span>
-          </label>
-          <input
-            type='email'
-            name='email'
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            className='w-full mt-1 bg-transparent border-none outline-none text-brand-brown'
-          />
-        </div>
+        <input
+          type='email'
+          name='email'
+          value={formData.email}
+          onChange={handleInputChange}
+          placeholder='Nhập email của bạn'
+          className='overflow-hidden px-vw-1 py-[.6vw] bg-white rounded-[1vw] border border-solid border-brand-lavender/30 min-w-60 text-brand-gray w-[20vw] focus:outline-none focus:border-brand-lavender'
+        />
 
-        <div className='flex flex-col justify-center items-start p-3 mt-3 w-full bg-white rounded border border-solid border-brand-lavender/30 focus-within:border-brand-lavender'>
-          <label className='flex gap-0.5 items-start'>
-            <span className='text-brand-gray'>Số điện thoại</span>
-            <span className='text-red-600'>*</span>
-          </label>
-          <input
-            type='tel'
-            name='phone'
-            value={formData.phone}
-            onChange={handleInputChange}
-            required
-            className='w-full mt-1 bg-transparent border-none outline-none text-brand-brown'
-          />
-        </div>
+        <input
+          type='tel'
+          name='phone'
+          value={formData.phone}
+          onChange={handleInputChange}
+          placeholder='Nhập số điện thoại của bạn'
+          className='overflow-hidden px-vw-1 py-[.6vw] bg-white rounded-[1vw] border border-solid border-brand-lavender/30 min-w-60 text-brand-gray w-[20vw] focus:outline-none focus:border-brand-lavender'
+        />
 
-        <button
+        <motion.button
           type='submit'
-          className='overflow-hidden gap-1.5 self-start px-5 py-2 mt-4 leading-loose text-center text-brand-lavender rounded border border-brand-lavender border-solid hover:bg-brand-lavender hover:text-white transition-colors'
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className='flex overflow-hidden gap-vw items-center self-start px-vw-1 py-[.6vw] leading-loose justify-center text-brand-lavender bg-transparent rounded-[1vw] hover:bg-brand-lavender/90 hover:text-white border border-brand-lavender transition-colors w-full'
         >
-          Gửi ngay
-        </button>
+          <span className='self-stretch my-auto text-[1vw]'>Gửi</span>
+          <IconSend />
+        </motion.button>
       </form>
     </section>
   );

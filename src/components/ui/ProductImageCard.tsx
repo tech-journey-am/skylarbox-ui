@@ -1,204 +1,155 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { BLUR_DATA_URL } from "@/components/constants";
-import React from "react"; // Added missing import
+import { Eye, ShoppingCart } from "lucide-react";
 
 interface ProductImageCardProps {
   giftImage: string;
   productImage: string;
-  giftIcon?: string;
   alt: string;
   className?: string;
-  onImageChange?: (isProduct: boolean) => void;
-  autoPlay?: boolean;
-  autoPlayDuration?: number;
-  showIndicator?: boolean;
-  giftTitle?: string;
-  productTitle?: string;
-  giftSubtitle?: string;
-  productSubtitle?: string;
-  showDetails?: boolean;
-  isHoverToOpen?: boolean;
-  overlayText?: {
-    title?: string;
-    description?: string;
-    price?: string;
-  };
+  title?: string;
+  description?: string;
+  price?: string;
+  originalPrice?: string;
+  badge?: string;
+  onCardClick?: () => void;
 }
 
 export default function ProductImageCard({
   giftImage,
   productImage,
-  giftIcon = "🎁",
   alt,
   className = "",
-  onImageChange,
-  autoPlay = false,
-  autoPlayDuration = 3000,
-  showIndicator = true,
-  giftTitle,
-  productTitle,
-  giftSubtitle,
-  productSubtitle,
-  showDetails = true,
-  isHoverToOpen = true,
-  overlayText,
+  title,
+  description,
+  price,
+  originalPrice,
+  badge,
+  onCardClick,
 }: ProductImageCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
   const [showProduct, setShowProduct] = useState(false);
 
-  const handleClick = () => {
-    setIsClicked(!isClicked);
-    setShowProduct(!showProduct);
-    onImageChange?.(!showProduct);
-    // Toggle hover state for visual feedback
-    setIsHovered(!showProduct);
+  const handleMouseEnter = () => {
+    setShowProduct(true);
   };
 
-  // Auto play functionality
-  React.useEffect(() => {
-    if (autoPlay && !isClicked) {
-      const interval = setInterval(() => {
-        setShowProduct((prev) => !prev);
-        onImageChange?.(!showProduct);
-      }, autoPlayDuration);
+  const handleMouseLeave = () => {
+    setShowProduct(false);
+  };
 
-      return () => clearInterval(interval);
-    }
-  }, [autoPlay, autoPlayDuration, isClicked, showProduct, onImageChange]);
+  const handleClick = () => {
+    onCardClick?.();
+  };
 
   return (
     <motion.div
-      className={`relative overflow-hidden rounded-2xl cursor-pointer touch-manipulation ${className}`}
+      className={`group relative bg-white rounded-[1vw] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={handleClick}
+      whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
     >
-      <AnimatePresence mode="wait">
-        {!showProduct ? (
-          // Gift Box View
-          <motion.div
-            key={`gift-${alt}`}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="relative w-full h-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-lavender/30 to-brand-yellow/30"
-          >
-            <Image
-              src={giftImage}
-              alt={`${alt} - Hộp quà`}
-              fill
-              className="object-cover "
-              placeholder="blur"
-              blurDataURL={BLUR_DATA_URL}
-            />
-            {showDetails ? (
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <motion.div
-                    className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-4"
-                    animate={{
-                      rotate: isHovered ? 90 : 0,
-                      scale: isHovered ? 1.1 : 1,
-                    }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  >
-                    <span className="text-2xl">{giftIcon}</span>
-                  </motion.div>
-                  <motion.p
-                    className="text-lg font-semibold px-2 sm:px-4"
-                    animate={{ y: isHovered ? -5 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {giftTitle || `Hộp quà ${alt}`}
-                  </motion.p>
-                  <motion.p
-                    className="text-sm opacity-80 px-2 sm:px-4"
-                    animate={{ opacity: isHovered ? 1 : 0.8 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {giftSubtitle || (isClicked ? "Đã mở" : "Click để mở")}
-                  </motion.p>
-                </div>
-              </div>
-            ) : null}
-          </motion.div>
-        ) : (
-          // Product View
-          <motion.div
-            key={`product-${alt}`}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="relative w-full h-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-rose/20 to-brand-lavender/20"
-          >
-            <Image
-              src={productImage}
-              alt={`${alt} - Sản phẩm`}
-              fill
-              className="object-cover"
-              placeholder="blur"
-              blurDataURL={BLUR_DATA_URL}
-            />
-            {showDetails ? (
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <div className="text-center text-white">
-                  {/* <motion.div
-                    className='w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-4'
-                    animate={{
-                      rotate: isHovered ? 0 : -90,
-                      scale: isHovered ? 1.1 : 1,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <span className='text-2xl'>{giftIcon}</span>
-                  </motion.div> */}
-                  {/* <motion.p
-                    className="text-lg font-medium px-2 sm:px-4"
-                    animate={{ y: isHovered ? -5 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {productTitle || alt}
-                  </motion.p> */}
-                  {/* <motion.p
-                    className="text-sm opacity-80 px-2 sm:px-4"
-                    animate={{ opacity: isHovered ? 1 : 0.8 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {productSubtitle || "Click để đóng"}
-                  </motion.p> */}
-                </div>
-              </div>
-            ) : null}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Auto play indicator */}
-      {autoPlay && (
-        <motion.div
-          className="absolute bottom-4 left-4 bg-black/50 text-white rounded-full px-2 py-1 text-xs"
-          animate={{ opacity: isHovered ? 1 : 0.5 }}
-          transition={{ duration: 0.3 }}
-        >
-          🔄 Auto
-        </motion.div>
+      {/* Badge - Outside Image Container */}
+      {badge && (
+        <div className='absolute top-vw-1 left-vw-1 z-10 bg-black/70 text-white px-[0.6vw] py-[0.4vw] rounded-full text-[0.6vw] font-medium'>
+          {badge}
+        </div>
       )}
 
-      {/* Click indicator for mobile */}
-      <motion.div
-        className="absolute top-2 left-2 bg-white/90 rounded-full size-8 flex items-center justify-center shadow-lg md:hidden"
-        animate={{ opacity: 0.7 }}
-        transition={{ duration: 0.3 }}
-      >
-        <span className="text-sm">👆</span>
-      </motion.div>
+      {/* Image Container */}
+      <div className='relative min-h-[20vw] overflow-hidden'>
+        {/* Gift Box View - Always present but opacity controlled */}
+        <motion.div
+          className='absolute inset-0 w-full h-full'
+          animate={{
+            opacity: showProduct ? 0 : 1,
+            scale: showProduct ? 0.95 : 1,
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <Image
+            src={giftImage}
+            alt={`${alt} - Hộp quà`}
+            fill
+            className='object-cover transition-transform duration-500 group-hover:scale-110'
+            placeholder='blur'
+            blurDataURL={BLUR_DATA_URL}
+          />
+        </motion.div>
+
+        {/* Product View - Always present but opacity controlled */}
+        <motion.div
+          className='absolute inset-0 w-full h-full'
+          animate={{
+            opacity: showProduct ? 1 : 0,
+            scale: showProduct ? 1.05 : 1.1,
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <Image
+            src={productImage}
+            alt={`${alt} - Sản phẩm`}
+            fill
+            className='object-cover transition-transform duration-500 group-hover:scale-110'
+            placeholder='blur'
+            blurDataURL={BLUR_DATA_URL}
+          />
+        </motion.div>
+      </div>
+
+      {/* Details Section */}
+      <div className='p-vw-1'>
+        {/* Title */}
+        <h3 className='font-semibold text-gray-900 text-[1.2vw] mb-vw line-clamp-2 group-hover:text-brand-rose transition-colors duration-300'>
+          {title || alt}
+        </h3>
+
+        {/* Description */}
+        {description && (
+          <p className='text-gray-600 text-[.8vw] mb-vw line-clamp-2 italic'>
+            {description}
+          </p>
+        )}
+
+        {/* Price Section */}
+        <div className='flex items-center justify-between mt-auto'>
+          <div className='flex items-center gap-2'>
+            {originalPrice && (
+              <span className='text-gray-400 text-[.8vw] line-through'>
+                {originalPrice}
+              </span>
+            )}
+            <span className='text-brand-rose font-bold text-[1.2vw]'>
+              {price}
+            </span>
+          </div>
+
+          {/* Action Button */}
+          <div className='flex justify-end gap-[.4vw]'>
+            <motion.button
+              className='bg-brand-rose text-white p-[0.6vw] rounded-full hover:bg-brand-rose/90 transition-colors duration-300 shadow-md'
+              title='Xem chi tiết'
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Eye className='w-[1vw] h-[1vw]' />
+            </motion.button>
+            <motion.button
+              className='bg-brand-rose text-white p-[0.6vw] rounded-full hover:bg-brand-rose/90 transition-colors duration-300 shadow-md'
+              title='Thêm vào giỏ hàng'
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ShoppingCart className='w-[1vw] h-[1vw]' />
+            </motion.button>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 }
-
