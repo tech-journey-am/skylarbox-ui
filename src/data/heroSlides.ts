@@ -12,7 +12,7 @@ export const heroSlides: VideoSlide[] = [
     id: 1,
     video: "/videos/candle_video_1.mp4",
     title: "Mỗi người tìm bình yên theo cách riêng",
-    subtitle: "Khám phá hành trình chữa lành của riêng bạn",
+    subtitle: '"Khám phá hành trình chữa lành của riêng bạn"',
     description:
       "Skylarbox - Hộp quà chữa lành với các sản phẩm nguyên bản, dịu dàng, sống động và lành.",
     showText: true,

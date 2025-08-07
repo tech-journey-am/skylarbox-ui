@@ -5,7 +5,7 @@ export interface FeaturedBox {
   color: string;
   giftImage: string;
   productImage: string;
-  giftIcon: string;
+  badge: string;
 }
 
 export const featuredBoxes: FeaturedBox[] = [
@@ -16,7 +16,7 @@ export const featuredBoxes: FeaturedBox[] = [
     color: "bg-gradient-to-br from-brand-rose/20 to-brand-rose/40",
     giftImage: "/images/box/demo.png",
     productImage: "/images/box/box_1.png",
-    giftIcon: "✨",
+    badge: "Mới",
   },
   {
     name: "Ngày dịu dàng",
@@ -25,7 +25,7 @@ export const featuredBoxes: FeaturedBox[] = [
     color: "bg-gradient-to-br from-brand-lavender/20 to-brand-lavender/40",
     giftImage: "/images/box/demo.png",
     productImage: "/images/box/box_2.png",
-    giftIcon: "🌸",
+    badge: "Phổ biến",
   },
   {
     name: "Tìm lại chính mình",
@@ -34,7 +34,7 @@ export const featuredBoxes: FeaturedBox[] = [
     color: "bg-gradient-to-br from-brand-cream to-brand-cream/80",
     giftImage: "/images/box/demo.png",
     productImage: "/images/box/box_3.png",
-    giftIcon: "🧘",
+    badge: "Đặc biệt",
   },
   {
     name: "Hãy tha thứ",
@@ -43,7 +43,7 @@ export const featuredBoxes: FeaturedBox[] = [
     color: "bg-gradient-to-br from-brand-sky/20 to-brand-sky/40",
     giftImage: "/images/box/demo.png",
     productImage: "/images/box/box_4.png",
-    giftIcon: "🕊️",
+    badge: "Đặc biệt",
   },
   {
     name: "Thanh lọc năng lượng",
@@ -52,7 +52,7 @@ export const featuredBoxes: FeaturedBox[] = [
     color: "bg-gradient-to-br from-brand-sage/20 to-brand-sage/40",
     giftImage: "/images/box/demo.png",
     productImage: "/images/box/box_5.png",
-    giftIcon: "🌿",
+    badge: "Đặc biệt",
   },
   {
     name: "May mắn",
@@ -61,6 +61,6 @@ export const featuredBoxes: FeaturedBox[] = [
     color: "bg-gradient-to-br from-brand-yellow/20 to-brand-yellow/40",
     giftImage: "/images/box/demo.png",
     productImage: "/images/box/box_6.png",
-    giftIcon: "🍀",
+    badge: "Đặc biệt",
   },
 ];

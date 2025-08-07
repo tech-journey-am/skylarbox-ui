@@ -129,3 +129,148 @@ Website đã được cải thiện toàn diện theo feedback từ khách hàng
 - Responsive hoàn hảo trên mọi thiết bị
 - Hiệu ứng mượt mà, chuyên nghiệp
 - UX/UI tối ưu cho người dùng 
+
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { BLUR_DATA_URL } from "@/components/constants";
+
+interface ProductImageCardProps {
+  giftImage: string;
+  productImage: string;
+  alt: string;
+  className?: string;
+  title?: string;
+  description?: string;
+  price?: string;
+  originalPrice?: string;
+  badge?: string;
+  onCardClick?: () => void;
+}
+
+export default function ProductImageCard({
+  giftImage,
+  productImage,
+  alt,
+  className = "",
+  title,
+  description,
+  price,
+  originalPrice,
+  badge,
+  onCardClick,
+}: ProductImageCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [showProduct, setShowProduct] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    setShowProduct(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setShowProduct(false);
+  };
+
+  const handleClick = () => {
+    onCardClick?.();
+  };
+
+  return (
+    <motion.div
+      className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      whileHover={{ y: -8 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {/* Badge - Outside Image Container */}
+      {badge && (
+        <div className='absolute top-3 left-3 z-10 bg-black/70 text-white px-2 py-1 rounded-full text-xs font-medium'>
+          {badge}
+        </div>
+      )}
+
+      {/* Image Container */}
+      <div className='relative h-64 overflow-hidden'>
+        {/* Gift Box View - Always present but opacity controlled */}
+        <motion.div
+          className='absolute inset-0 w-full h-full'
+          animate={{
+            opacity: showProduct ? 0 : 1,
+            scale: showProduct ? 0.95 : 1,
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <Image
+            src={giftImage}
+            alt={`${alt} - Hộp quà`}
+            fill
+            className='object-cover transition-transform duration-500 group-hover:scale-110'
+            placeholder='blur'
+            blurDataURL={BLUR_DATA_URL}
+          />
+        </motion.div>
+
+        {/* Product View - Always present but opacity controlled */}
+        <motion.div
+          className='absolute inset-0 w-full h-full'
+          animate={{
+            opacity: showProduct ? 1 : 0,
+            scale: showProduct ? 1.05 : 1.1,
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <Image
+            src={productImage}
+            alt={`${alt} - Sản phẩm`}
+            fill
+            className='object-cover transition-transform duration-500 group-hover:scale-110'
+            placeholder='blur'
+            blurDataURL={BLUR_DATA_URL}
+          />
+        </motion.div>
+      </div>
+
+      {/* Details Section */}
+      <div className='p-4'>
+        {/* Title */}
+        <h3 className='font-semibold text-gray-900 text-lg mb-2 line-clamp-2 group-hover:text-brand-rose transition-colors duration-300'>
+          {title || alt}
+        </h3>
+
+        {/* Description */}
+        {description && (
+          <p className='text-gray-600 text-sm mb-3 line-clamp-2'>
+            {description}
+          </p>
+        )}
+
+        {/* Price Section */}
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-2'>
+            {originalPrice && (
+              <span className='text-gray-400 text-sm line-through'>
+                {originalPrice}
+              </span>
+            )}
+            <span className='text-brand-rose font-bold text-lg'>{price}</span>
+          </div>
+
+          {/* Action Button */}
+          <motion.button
+            className='bg-brand-rose text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-brand-rose/90 transition-colors duration-300'
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Chi tiết
+          </motion.button>
+        </div>
+      </div>
+    </motion.div>
+  );
+}

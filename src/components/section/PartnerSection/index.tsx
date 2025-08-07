@@ -63,7 +63,7 @@ const PartnerSection = () => {
   };
 
   return (
-    <section className='w-full py-6 bg-gray-50 overflow-hidden'>
+    <section className='w-full py-6 bg-brand-cream overflow-hidden'>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -71,36 +71,6 @@ const PartnerSection = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className='space-y-6'
       >
-        <Marquee
-          speed={50}
-          gradient={true}
-          gradientColor='rgb(249, 250, 251)'
-          gradientWidth={100}
-          pauseOnHover={true}
-          direction='right'
-          autoFill
-        >
-          <div className='flex items-center space-x-16 mx-8'>
-            <div className='flex gap-16 items-center lg:filter lg:grayscale hover:grayscale-0 transition-all duration-300'>
-              <Flame className='size-6 text-mainColor' />
-            </div>
-            <div className='flex gap-16 items-center lg:filter lg:grayscale hover:grayscale-0 transition-all duration-300'>
-              <span className='text-xl font-bold text-mainColor'>
-                Nhà tài trợ dự án Thắp Sáng
-              </span>
-            </div>
-
-            <div className='flex gap-16 items-center lg:filter lg:grayscale hover:grayscale-0 transition-all duration-300'>
-              <Flame className='size-6 text-mainColor' />
-            </div>
-            <div className='flex gap-16 items-center lg:filter lg:grayscale hover:grayscale-0 transition-all duration-300'>
-              <span className='text-xl font-bold text-mainColor text-outline-thin'>
-                Cảm ơn các đối tác
-              </span>
-            </div>
-          </div>
-        </Marquee>
-
         <Marquee
           speed={50}
           gradient={true}

@@ -5,11 +5,11 @@ interface FooterBottomProps {}
 
 export function FooterBottom({}: FooterBottomProps) {
   return (
-    <section className='relative flex z-0 flex-col justify-center px-24 py-4 w-full min-h-[68px] max-md:px-5 max-md:max-w-full bg-gradient-to-br from-brand-cream to-brand-sky/30'>
-      <div className='flex relative flex-wrap gap-10 justify-between items-center w-full max-md:max-w-full'>
-        <p className='self-stretch my-auto text-xs leading-3 w-[628px] max-md:max-w-full text-gray-800'>
+    <section className='relative flex z-0 flex-col justify-center px-vw-4 py-vw-2 w-full min-h-[6vw] bg-gradient-to-br from-brand-cream to-brand-sky/30'>
+      <div className='flex relative flex-wrap gap-vw justify-center items-center w-full'>
+        <p className='text-[1vw] leading-3 text-brand-gray text-center'>
           © 2024 Công ty TNHH MTV SKYLARBOX. All rights reserved.
-          <span className='text-gray-400'> Mã số thuế: 0402286006</span>
+          <span className='text-brand-gray/50'> Mã số thuế: 0402286006</span>
         </p>
         {/* <div className='flex gap-3 items-center self-stretch my-auto text-xs leading-loose min-w-60'>
           <span className='self-stretch my-auto w-[62px] text-gray-300'>
