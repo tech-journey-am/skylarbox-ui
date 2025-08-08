@@ -16,12 +16,10 @@ const PartnerSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.7 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className='text-brand-gray text-2xl md:text-[3vw]  text-center font-bold uppercase'
+            className='text-brand-gray text-2xl md:text-[3vw] text-center font-bold uppercase'
           >
             Đồng hành cùng{" "}
-            <span className='text-brand-lavender text-xl md:text-[2vw]'>
-              Skylarbox
-            </span>
+            <span className='text-brand-lavender'>Skylarbox</span>
           </motion.p>
         </div>
 
