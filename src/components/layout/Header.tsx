@@ -48,9 +48,9 @@ export default function Header({ className = "" }: HeaderProps) {
         <nav className='flex items-center justify-between h-full'>
           {/* Logo */}
           <Link href='/'>
-            <div className='shadow-lg overflow-hidden rounded-full flex items-center justify-center relative md:w-vw-3 md:h-vw-3 md:min-w-vw-2.5 md:min-h-vw-2.5 size-8'>
+            <div className='overflow-hidden rounded-full flex items-center justify-center relative md:w-vw-3 md:h-vw-3 md:min-w-vw-2.5 md:min-h-vw-2.5 size-8'>
               <Image
-                src='/logo/logo_circle.png'
+                src='/logo/logo.png'
                 fill
                 alt='logo'
                 className='object-contain'
