@@ -98,22 +98,22 @@ export default function VideoHero({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0.3, y: -50 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className='max-w-[60vw] text-white'
+                className='max-w-full md:max-w-[60vw] text-white'
               >
-                <h1 className='hero-title mb-6 leading-tight text-[4vw]'>
+                <h1 className='hero-title mb-4 md:mb-6 leading-tight text-2xl sm:text-3xl md:text-[4vw]'>
                   {slides[currentSlide].title}
                 </h1>
-                <h2 className='hero-subtitle mb-4 text-brand-lavender text-[2vw]'>
+                <h2 className='hero-subtitle mb-3 md:mb-4 text-brand-lavender text-lg sm:text-xl md:text-[2vw]'>
                   {slides[currentSlide].subtitle}
                 </h2>
-                <p className='text-gray-200 mb-8 max-w-[50vw] hero-description text-[1.2vw]'>
+                <p className='text-gray-200 mb-6 md:mb-8 max-w-full md:max-w-[50vw] hero-description text-sm sm:text-base md:text-[1.2vw]'>
                   {slides[currentSlide].description}
                 </p>
-                <div className='flex flex-col sm:flex-row gap-4'>
-                  <button className='bg-brand-lavender hover:bg-brand-lavender/90 text-white font-semibold text-[1vw] px-[1.6vw] py-[1vw] rounded-[1.5vw] transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md border-2 border-brand-lavender/20 backdrop-blur-sm'>
+                <div className='flex flex-col sm:flex-row gap-3 md:gap-4'>
+                  <button className='bg-brand-lavender hover:bg-brand-lavender/90 text-white font-semibold text-sm sm:text-base md:text-[1vw] px-4 py-2 md:px-[1.6vw] md:py-[1vw] rounded-lg md:rounded-[1.5vw] transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md border-2 border-brand-lavender/20 backdrop-blur-sm'>
                     Khám phá ngay
                   </button>
-                  <button className='bg-transparent hover:bg-white/10 text-white font-semibold text-[1vw] px-[1.6vw] py-[1vw] rounded-[1.5vw] transition-all duration-300 transform hover:scale-105 border-2 border-white/30 hover:border-white/50 backdrop-blur-sm'>
+                  <button className='bg-transparent hover:bg-white/10 text-white font-semibold text-sm sm:text-base md:text-[1vw] px-4 py-2 md:px-[1.6vw] md:py-[1vw] rounded-lg md:rounded-[1.5vw] transition-all duration-300 transform hover:scale-105 border-2 border-white/30 hover:border-white/50 backdrop-blur-sm'>
                     Tham gia cộng đồng
                   </button>
                 </div>
@@ -125,16 +125,16 @@ export default function VideoHero({
 
       {/* Navigation Buttons - Dynamic Container */}
       {showNavigation && (
-        <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 group/navigation'>
-          <div className='flex gap-3 bg-white/10 backdrop-blur-md rounded-full p-[0.6vw] transition-all duration-500 overflow-hidden group-hover/navigation:px-[1.2vw]'>
+        <div className='absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-20 group/navigation'>
+          <div className='flex gap-2 md:gap-3 bg-white/10 backdrop-blur-md rounded-full p-2 md:p-[0.6vw] transition-all duration-500 overflow-hidden group-hover/navigation:px-3 md:group-hover/navigation:px-[1.2vw]'>
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`rounded-full transition-all duration-300 flex items-center  justify-center w-[2.5vw] h-[2.5vw] text-[0.8vw] font-bold ${
+                className={`rounded-full transition-all duration-300 flex items-center justify-center w-8 h-8 md:w-[2.5vw] md:h-[2.5vw] text-xs md:text-[0.8vw] font-bold ${
                   index === currentSlide
                     ? "bg-brand-lavender text-white shadow-lg border-2 border-brand-lavender/30"
-                    : "bg-brand-sage/30 text-brand-brown hover:bg-brand-sage/50 border-2 border-brand-sage/20  scale-75 group-hover/navigation:opacity-100 group-hover/navigation:scale-100 group-hover/navigation:w-[2.5vw] hover:!scale-110"
+                    : "bg-brand-sage/30 text-brand-brown hover:bg-brand-sage/50 border-2 border-brand-sage/20 scale-75 group-hover/navigation:opacity-100 group-hover/navigation:scale-100 group-hover/navigation:w-8 md:group-hover/navigation:w-[2.5vw] hover:!scale-110"
                 }`}
               >
                 <span>{index + 1}</span>
@@ -146,7 +146,7 @@ export default function VideoHero({
 
       {/* Progress Bar */}
       {showProgress && (
-        <div className='absolute bottom-0 left-0 right-0 bg-white/20 h-[0.3vw]'>
+        <div className='absolute bottom-0 left-0 right-0 bg-white/20 h-1 md:h-[0.3vw]'>
           <motion.div
             className='h-full bg-white'
             initial={{ width: 0 }}

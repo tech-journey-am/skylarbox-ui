@@ -2,6 +2,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   date: string;
+  image: string;
 }
 
 export interface Testimonial {
@@ -16,18 +17,21 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Khám phá những phương pháp đơn giản để chăm sóc bản thân trong cuộc sống bận rộn...",
     date: "15/12/2024",
+    image: "/images/box/box_1.png",
   },
   {
     title: "Mindfulness: Nghệ thuật sống hiện tại",
     excerpt:
       "Tìm hiểu về mindfulness và cách áp dụng vào cuộc sống hàng ngày để giảm stress...",
     date: "12/12/2024",
+    image: "/images/box/box_2.png",
   },
   {
     title: "Hành trình chữa lành từ những vết thương",
     excerpt:
       "Chia sẻ về quá trình chữa lành và những bài học quý giá từ những khó khăn...",
     date: "10/12/2024",
+    image: "/images/box/box_3.png",
   },
 ];
 

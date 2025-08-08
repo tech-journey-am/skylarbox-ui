@@ -3,11 +3,10 @@ import React from "react";
 const IconPhone = () => {
   return (
     <svg
-      width='1.6vw'
-      height='1.6vw'
       viewBox='0 0 15 15'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      className='md:w-[1.6vw] size-4 md:h-[1.6vw]'
     >
       <g clipPath='url(#clip0_375_16411)'>
         <mask

@@ -11,12 +11,12 @@ interface FooterProps {}
 export function Footer({}: FooterProps) {
   return (
     <footer className='relative bg-gradient-to-br from-brand-cream to-brand-sky/30'>
-      <div className='z-0 px-vw-4 py-vw-2 w-full'>
+      <div className='z-0 px-4 md:px-vw-4 py-4 md:py-vw-2 w-full'>
         <NewsletterSignup />
 
-        <hr className='my-vw-2 w-full border border-solid border-brand-lavender/20 min-h-px' />
+        <hr className='my-4 md:my-vw-2 w-full border border-solid border-brand-lavender/20 min-h-px' />
 
-        <div className='flex flex-wrap gap-vw justify-between items-start w-full'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-vw justify-between items-start w-full'>
           <CompanyInfo />
           <QuickLinks />
           <ContactInfo />
@@ -24,7 +24,7 @@ export function Footer({}: FooterProps) {
         </div>
       </div>
 
-      <hr className='mt-vw-2 w-full border border-solid border-brand-lavender/20 min-h-px' />
+      <hr className='mt-4 md:mt-vw-2 w-full border border-solid border-brand-lavender/20 min-h-px' />
 
       <FooterBottom />
     </footer>

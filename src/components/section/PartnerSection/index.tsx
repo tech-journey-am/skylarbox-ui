@@ -1,117 +1,66 @@
 import React from "react";
-import Marquee from "react-fast-marquee";
-import { Flame, Star, Award } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { partners } from "@/data/partners";
 
 const PartnerSection = () => {
-  const getPackageStyle = (packageType: string) => {
-    switch (packageType) {
-      case "diamond":
-        return {
-          containerClass:
-            "border-2 border-blue-300 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-2",
-          imageClass: "filter-none",
-          badge: (
-            <div className='flex items-center gap-1'>
-              <span>💎</span>
-              <span>Kim Cương</span>
-            </div>
-          ),
-          badgeClass:
-            "bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs px-2 py-1 rounded-full",
-        };
-      case "silver":
-        return {
-          containerClass:
-            "border border-gray-300 bg-gradient-to-r from-gray-50 to-slate-50 rounded-lg p-1",
-          imageClass: "filter-none",
-          badge: (
-            <div className='flex items-center gap-1'>
-              <Star className='w-3 h-3' />
-              <span>Bạc</span>
-            </div>
-          ),
-          badgeClass:
-            "bg-gradient-to-r from-gray-400 to-slate-400 text-white text-xs px-2 py-1 rounded-full",
-        };
-      case "bronze":
-      case "brozen": // Handle typo in data
-        return {
-          containerClass:
-            "border border-amber-300 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-1",
-          imageClass: "filter-none",
-          badge: (
-            <div className='flex items-center gap-1'>
-              <Award className='w-3 h-3' />
-              <span>Đồng</span>
-            </div>
-          ),
-          badgeClass:
-            "bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs px-2 py-1 rounded-full",
-        };
-      default:
-        return {
-          containerClass: "",
-          imageClass:
-            "filter grayscale hover:grayscale-0 transition-all duration-300",
-          badge: "",
-          badgeClass: "",
-        };
-    }
-  };
+  // Take only first 6 partners
+  const displayPartners = partners.slice(0, 6);
 
   return (
-    <section className='w-full py-6 bg-brand-cream overflow-hidden'>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className='space-y-6'
-      >
-        <Marquee
-          speed={50}
-          gradient={true}
-          gradientColor='rgb(249, 250, 251)'
-          gradientWidth={100}
-          pauseOnHover={true}
-          autoFill
+    <section className='w-full py-8 md:py-vw-4 bg-gradient-to-br from-brand-cream to-brand-sky/10'>
+      <div className='container mx-auto px-4'>
+        <div className='text-center mb-6 md:mb-vw-2'>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className='text-brand-gray text-2xl md:text-[3vw]  text-center font-bold uppercase'
+          >
+            Đồng hành cùng{" "}
+            <span className='text-brand-lavender text-xl md:text-[2vw]'>
+              Skylarbox
+            </span>
+          </motion.p>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className='flex items-center justify-center'
         >
-          <div className='flex items-center space-x-12 mx-8'>
-            {partners.map((partner, index) => {
-              const style = getPackageStyle(partner.package);
-              return (
-                <div
-                  key={partner.id || index}
-                  className='flex-shrink-0 relative group'
-                >
-                  <div
-                    className={`w-40 h-24 flex items-center justify-center relative transition-all duration-300 hover:scale-105`}
-                  >
-                    <div className='w-full h-full relative overflow-hidden rounded'>
-                      <Image
-                        src={partner.logo}
-                        alt={
-                          partner.shortName || partner.companyName || "Partner"
-                        }
-                        fill
-                        className={`object-contain transition-all duration-300 `}
-                      />
-                    </div>
-                    {/* {style.badge && (
-                      <div className='absolute -top-2 -right-2 z-10'>
-                        <span className={style.badgeClass}>{style.badge}</span>
-                      </div>
-                    )} */}
+          <div className='grid grid-cols-6 gap-6 md:gap-vw-4'>
+            {displayPartners.map((partner, index) => (
+              <motion.div
+                key={partner.id || index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -4, scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className='flex-shrink-0 relative group cursor-pointer'
+              >
+                <div className='w-10 h-10 md:w-vw-4 md:h-vw-4 flex items-center justify-center relative transition-all duration-300 hover:scale-110'>
+                  <div className='w-full h-full relative overflow-hidden rounded'>
+                    <Image
+                      src={partner.logo}
+                      alt={
+                        partner.shortName || partner.companyName || "Partner"
+                      }
+                      fill
+                      className='object-contain transition-all duration-300'
+                    />
                   </div>
                 </div>
-              );
-            })}
+              </motion.div>
+            ))}
           </div>
-        </Marquee>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

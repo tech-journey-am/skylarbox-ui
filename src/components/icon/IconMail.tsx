@@ -3,11 +3,10 @@ import React from "react";
 const IconMail = () => {
   return (
     <svg
-      width='1.6vw'
-      height='1.6vw'
       viewBox='0 0 15 15'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      className='md:w-[1.6vw] size-4 md:h-[1.6vw]'
     >
       <path
         d='M4.85516 5.64551L6.51005 6.62392C7.47484 7.19435 7.86049 7.19435 8.82529 6.62392L10.4802 5.64551'

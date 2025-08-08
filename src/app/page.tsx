@@ -7,7 +7,7 @@ import {
   FeaturedBoxesSection,
   IndividualProductsSection,
   SpotifySubscriptionSection,
-  BlogCommunitySection,
+  CommunitySection,
   PartnerSection,
 } from "@/components/section";
 import {
@@ -43,6 +43,7 @@ import {
   Palette,
   Wand2,
 } from "lucide-react";
+import TestimonialsSection from "@/components/section/TestimonialsSection";
 
 export default function HomePage() {
   return (
@@ -93,9 +94,12 @@ export default function HomePage() {
         <Ghost className='absolute right-[35vw] top-[2vw] w-[2.5vw] h-[2.5vw] text-gray-300 opacity-10 pointer-events-none z-0' />
       </div>
 
-      {/* Blog Community Section with icon background */}
+      {/* Testimonials */}
+      <TestimonialsSection />
+
+      {/* Cộng đồng (Blog + Testimonials + Mosaic) */}
       <div className='relative'>
-        <BlogCommunitySection />
+        <CommunitySection />
         <Sparkles className='absolute left-[12vw] top-[3vw] w-[4vw] h-[4vw] text-brand-yellow opacity-10 pointer-events-none z-0' />
         <Smile className='absolute right-[8vw] bottom-[2vw] w-[5vw] h-[5vw] text-brand-lavender opacity-10 pointer-events-none z-0' />
         <BookOpen className='absolute left-[25vw] top-[8vw] w-[3vw] h-[3vw] text-blue-400 opacity-10 pointer-events-none z-0' />
