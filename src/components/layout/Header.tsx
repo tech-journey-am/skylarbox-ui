@@ -48,7 +48,7 @@ export default function Header({ className = "" }: HeaderProps) {
         <nav className='flex items-center justify-between h-full'>
           {/* Logo */}
           <Link href='/'>
-            <div className='overflow-hidden rounded-full flex items-center justify-center relative w-vw-3 h-vw-3 min-w-vw-2.5 min-h-vw-2.5'>
+            <div className='overflow-hidden rounded-full flex items-center justify-center relative md:w-vw-3 md:h-vw-3 md:min-w-vw-2.5 md:min-h-vw-2.5 size-8'>
               <Image
                 src='/logo/logo.png'
                 fill
@@ -125,9 +125,9 @@ export default function Header({ className = "" }: HeaderProps) {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className='text-gray-700 w-[1.5vw] h-[1.5vw]' />
+              <X className='text-gray-700 w-6 h-6' />
             ) : (
-              <Menu className='text-gray-700 w-[1.5vw] h-[1.5vw]' />
+              <Menu className='text-gray-700 w-6 h-6' />
             )}
           </button>
         </nav>

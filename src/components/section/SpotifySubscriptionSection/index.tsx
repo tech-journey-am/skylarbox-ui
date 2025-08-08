@@ -7,11 +7,11 @@ import Image from "next/image";
 
 export default function SpotifySubscriptionSection() {
   return (
-    <section className='py-vw-6 bg-soft-gradient'>
+    <section className='py-8 md:py-vw-6 bg-soft-gradient'>
       <div className='container mx-auto px-4'>
         {/* Spotify Section */}
-        <div className='mb-vw-6'>
-          <div className='grid lg:grid-cols-2 gap-vw-2 items-center'>
+        <div className='mb-8 md:mb-vw-6'>
+          <div className='grid lg:grid-cols-2 gap-6 md:gap-vw-2 items-center'>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -23,7 +23,7 @@ export default function SpotifySubscriptionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.7 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
-                className='text-[2vw] uppercase font-serif font-bold text-neutral-700 mb-vw-1'
+                className='text-xl md:text-[2vw] uppercase font-serif font-bold text-neutral-700 mb-2 md:mb-vw-1'
               >
                 Playlist{" "}
                 <span className='text-brand-rose'>chữa lành độc quyền</span>
@@ -33,13 +33,13 @@ export default function SpotifySubscriptionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.7 }}
                 transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-                className='text-brand-gray text-[1vw] mb-vw-2 leading-relaxed italic'
+                className='text-brand-gray text-sm md:text-[1vw] mb-4 md:mb-vw-2 leading-relaxed italic'
               >
                 Khám phá những playlist được chọn lọc đặc biệt cho thành viên
                 Skylarbox. Âm nhạc có khả năng chữa lành tâm hồn và mang lại
                 bình yên.
               </motion.p>
-              <div className='grid grid-cols-2 gap-vw-1 mb-vw-1'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-vw-1 mb-4 md:mb-vw-1'>
                 {playlists.map((playlist, index) => (
                   <motion.div
                     key={index}
@@ -52,7 +52,7 @@ export default function SpotifySubscriptionSection() {
                     }}
                   >
                     <motion.div
-                      className='flex items-center space-x-vw-1 bg-gradient-to-r cursor-pointer from-brand-rose/20 to-brand-yellow/20 rounded-lg p-vw-1'
+                      className='flex items-center space-x-2 md:space-x-vw-1 bg-gradient-to-r cursor-pointer from-brand-rose/20 to-brand-yellow/20 rounded-lg p-3 md:p-vw-1'
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -64,15 +64,17 @@ export default function SpotifySubscriptionSection() {
                           repeatType: "loop",
                           ease: "easeInOut",
                         }}
-                        className='w-[2vw] h-[2vw] bg-brand-rose rounded-full flex items-center justify-center'
+                        className='w-8 h-8 md:w-[2vw] md:h-[2vw] bg-brand-rose rounded-full flex items-center justify-center'
                       >
-                        <Play className='w-[1vw] h-[1vw] text-white' />
+                        <Play className='w-4 h-4 md:w-[1vw] md:h-[1vw] text-white' />
                       </motion.button>
                       <div>
-                        <p className='font-medium text-[1vw] text-neutral-700'>
+                        <p className='font-medium text-sm md:text-[1vw] text-neutral-700'>
                           {playlist}
                         </p>
-                        <p className='text-[.8vw] text-brand-gray'>Skylarbox</p>
+                        <p className='text-xs md:text-[.8vw] text-brand-gray'>
+                          Skylarbox
+                        </p>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -80,7 +82,7 @@ export default function SpotifySubscriptionSection() {
               </div>
 
               <motion.button
-                className='bg-brand-rose text-white px-[1.2vw] py-[0.6vw] rounded-full text-[1vw] font-semibold hover:bg-brand-rose/90 transition-colors duration-300'
+                className='bg-brand-rose text-white px-4 py-2 md:px-[1.2vw] md:py-[0.6vw] rounded-full text-sm md:text-[1vw] font-semibold hover:bg-brand-rose/90 transition-colors duration-300'
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 40 }}
@@ -99,7 +101,7 @@ export default function SpotifySubscriptionSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className='relative'
             >
-              <div className='rounded-2xl p-[2vw] h-[28vw] flex items-center justify-center relative overflow-hidden'>
+              <div className='rounded-2xl p-6 md:p-[2vw] h-[200px] md:h-[28vw] flex items-center justify-center relative overflow-hidden'>
                 <Image
                   src='/images/spotify-bg.png'
                   alt='Spotify Premium'
@@ -115,10 +117,10 @@ export default function SpotifySubscriptionSection() {
                       repeatType: "loop",
                       ease: "easeInOut",
                     }}
-                    className='w-[6vw] h-[6vw] bg-white/80 rounded-full flex items-center justify-center mx-auto mb-4'
+                    className='w-16 h-16 md:w-[6vw] md:h-[6vw] bg-white/80 rounded-full flex items-center justify-center mx-auto mb-4'
                   >
                     <svg
-                      className='w-[4vw] h-[4vw] text-green-500'
+                      className='w-8 h-8 md:w-[4vw] md:h-[4vw] text-green-500'
                       fill='currentColor'
                       viewBox='0 0 24 24'
                     >
@@ -133,13 +135,13 @@ export default function SpotifySubscriptionSection() {
 
         {/* Subscription Plans */}
         <div>
-          <div className='text-center mb-vw-3'>
+          <div className='text-center mb-6 md:mb-vw-3'>
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className='text-[3vw] uppercase font-serif font-bold text-neutral-700 mb-vw-1'
+              className='text-2xl md:text-[3vw] uppercase font-serif font-bold text-neutral-700 mb-2 md:mb-vw-1'
             >
               Các gói <span className='text-brand-lavender'>Subscription</span>
             </motion.h2>
@@ -148,13 +150,13 @@ export default function SpotifySubscriptionSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-              className='text-brand-gray text-[1.2vw] text-center italic'
+              className='text-brand-gray text-sm md:text-[1.2vw] text-center italic'
             >
               Chọn gói phù hợp với nhu cầu chữa lành của bạn
             </motion.p>
           </div>
 
-          <div className='grid md:grid-cols-3 gap-vw-2'>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-vw-2'>
             {subscriptionPlans.map((plan, index) => (
               <motion.div
                 key={index}
@@ -165,7 +167,7 @@ export default function SpotifySubscriptionSection() {
                   duration: 0.6,
                   delay: 0.15 * index,
                 }}
-                className={`relative bg-white rounded-[1vw] p-[2vw] shadow-sm hover:shadow-md transition-shadow ${
+                className={`relative bg-white rounded-lg md:rounded-[1vw] p-6 md:p-[2vw] shadow-sm hover:shadow-md transition-shadow ${
                   plan.popular ? "ring-2 ring-brand-lavender" : ""
                 }`}
               >
@@ -179,45 +181,45 @@ export default function SpotifySubscriptionSection() {
                       ease: "easeInOut",
                     }}
                   >
-                    <div className='absolute -top-[3vw] left-1/2 transform -translate-x-1/2'>
-                      <span className='bg-brand-lavender text-white px-[1vw] py-[.5vw] rounded-full text-[1vw] font-medium'>
+                    <div className='absolute -top-3 md:-top-[3vw] left-1/2 transform -translate-x-1/2'>
+                      <span className='bg-brand-lavender text-white px-3 py-1 md:px-[1vw] md:py-[.5vw] rounded-full text-xs md:text-[1vw] font-medium text-nowrap'>
                         {plan.savings}
                       </span>
                     </div>
                   </motion.div>
                 )}
 
-                <div className='text-center mb-vw-1'>
-                  <h3 className='text-[1.5vw] font-semibold text-neutral-700 mb-[.2vw]'>
+                <div className='text-center mb-4 md:mb-vw-1'>
+                  <h3 className='text-lg md:text-[1.5vw] font-semibold text-neutral-700 mb-1 md:mb-[.2vw]'>
                     {plan.name}
                   </h3>
-                  <div className='mb-vw-1'>
-                    <span className='text-[2vw] font-bold text-brand-lavender'>
+                  <div className='mb-3 md:mb-vw-1'>
+                    <span className='text-xl md:text-[2vw] font-bold text-brand-lavender'>
                       {plan.price}
                     </span>
-                    <span className='text-brand-gray text-[.8vw]'>
+                    <span className='text-brand-gray text-sm md:text-[.8vw]'>
                       /{plan.period}
                     </span>
                   </div>
                 </div>
 
-                <ul className='space-y-vw-1 mb-vw-2'>
+                <ul className='space-y-2 md:space-y-vw-1 mb-4 md:mb-vw-2'>
                   {plan.features.map((feature, featureIndex) => {
                     return (
                       <li
                         key={featureIndex}
-                        className='flex items-start space-x-vw-1'
+                        className='flex items-start space-x-2 md:space-x-vw-1'
                       >
                         {feature.included ? (
-                          <Star className='w-[1vw] h-[1vw] text-brand-lavender mt-[.5vw] flex-shrink-0' />
+                          <Star className='w-4 h-4 md:w-[1vw] md:h-[1vw] text-brand-lavender mt-1 md:mt-[.5vw] flex-shrink-0' />
                         ) : (
-                          <X className='w-[1vw] h-[1vw] text-red-400 mt-[.5vw] flex-shrink-0' />
+                          <X className='w-4 h-4 md:w-[1vw] md:h-[1vw] text-red-400 mt-1 md:mt-[.5vw] flex-shrink-0' />
                         )}
                         <span
                           className={
                             feature.included
-                              ? "text-brand-gray text-[1vw]"
-                              : "text-brand-gray text-[1vw] line-through opacity-60"
+                              ? "text-brand-gray text-sm md:text-[1vw]"
+                              : "text-brand-gray text-sm md:text-[1vw] line-through opacity-60"
                           }
                         >
                           {feature.name}
@@ -228,7 +230,7 @@ export default function SpotifySubscriptionSection() {
                 </ul>
 
                 <motion.button
-                  className='bg-brand-lavender text-white px-[1.2vw] w-full py-[0.6vw] rounded-full text-[1vw] font-semibold hover:bg-brand-lavender/90 transition-colors duration-300'
+                  className='bg-brand-lavender text-white px-4 py-2 md:px-[1.2vw] w-full md:py-[0.6vw] rounded-full text-sm md:text-[1vw] font-semibold hover:bg-brand-lavender/90 transition-colors duration-300'
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

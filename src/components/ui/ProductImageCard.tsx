@@ -47,22 +47,22 @@ export default function ProductImageCard({
 
   return (
     <motion.div
-      className={`group relative bg-white rounded-[1vw] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer ${className}`}
+      className={`group relative bg-white rounded-lg md:rounded-[1vw] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       {/* Badge - Outside Image Container */}
       {badge && (
-        <div className='absolute top-vw-1 left-vw-1 z-10 bg-black/70 text-white px-[0.6vw] py-[0.4vw] rounded-full text-[0.6vw] font-medium'>
+        <div className='absolute top-2 left-2 md:top-vw-1 md:left-vw-1 z-10 bg-black/70 text-white px-2 py-1 md:px-[0.6vw] md:py-[0.4vw] rounded-full text-xs md:text-[0.6vw] font-medium'>
           {badge}
         </div>
       )}
 
       {/* Image Container */}
-      <div className='relative min-h-[20vw] overflow-hidden'>
+      <div className='relative min-h-[200px] md:min-h-[20vw] overflow-hidden'>
         {/* Gift Box View - Always present but opacity controlled */}
         <motion.div
           className='absolute inset-0 w-full h-full'
@@ -103,15 +103,15 @@ export default function ProductImageCard({
       </div>
 
       {/* Details Section */}
-      <div className='p-vw-1'>
+      <div className='p-4 md:p-vw-1'>
         {/* Title */}
-        <h3 className='font-semibold text-gray-900 text-[1.2vw] mb-vw line-clamp-2 group-hover:text-brand-rose transition-colors duration-300'>
+        <h3 className='font-semibold text-gray-900 text-base md:text-[1.2vw] mb-2 md:mb-vw line-clamp-2 group-hover:text-brand-rose transition-colors duration-300'>
           {title || alt}
         </h3>
 
         {/* Description */}
         {description && (
-          <p className='text-gray-600 text-[.8vw] mb-vw line-clamp-2 italic'>
+          <p className='text-gray-600 text-sm md:text-[.8vw] mb-3 md:mb-vw line-clamp-2 italic'>
             {description}
           </p>
         )}
@@ -120,32 +120,32 @@ export default function ProductImageCard({
         <div className='flex items-center justify-between mt-auto'>
           <div className='flex items-center gap-2'>
             {originalPrice && (
-              <span className='text-gray-400 text-[.8vw] line-through'>
+              <span className='text-gray-400 text-sm md:text-[.8vw] line-through'>
                 {originalPrice}
               </span>
             )}
-            <span className='text-brand-rose font-bold text-[1.2vw]'>
+            <span className='text-brand-rose font-bold text-lg md:text-[1.2vw]'>
               {price}
             </span>
           </div>
 
           {/* Action Button */}
-          <div className='flex justify-end gap-[.4vw]'>
+          <div className='flex justify-end gap-2 md:gap-[.4vw]'>
             <motion.button
-              className='bg-brand-rose text-white p-[0.6vw] rounded-full hover:bg-brand-rose/90 transition-colors duration-300 shadow-md'
+              className='bg-brand-rose text-white p-2 md:p-[0.6vw] rounded-full hover:bg-brand-rose/90 transition-colors duration-300 shadow-md'
               title='Xem chi tiết'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Eye className='w-[1vw] h-[1vw]' />
+              <Eye className='w-4 h-4 md:w-[1vw] md:h-[1vw]' />
             </motion.button>
             <motion.button
-              className='bg-brand-rose text-white p-[0.6vw] rounded-full hover:bg-brand-rose/90 transition-colors duration-300 shadow-md'
+              className='bg-brand-rose text-white p-2 md:p-[0.6vw] rounded-full hover:bg-brand-rose/90 transition-colors duration-300 shadow-md'
               title='Thêm vào giỏ hàng'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <ShoppingCart className='w-[1vw] h-[1vw]' />
+              <ShoppingCart className='w-4 h-4 md:w-[1vw] md:h-[1vw]' />
             </motion.button>
           </div>
         </div>

@@ -3,4 +3,4 @@ export { default as PartnerSection } from "./PartnerSection";
 export { default as FeaturedBoxesSection } from "./FeaturedBoxesSection";
 export { default as IndividualProductsSection } from "./IndividualProductsSection";
 export { default as SpotifySubscriptionSection } from "./SpotifySubscriptionSection";
-export { default as BlogCommunitySection } from "./BlogCommunitySection";
+export { default as CommunitySection } from "./CommunitySection";
