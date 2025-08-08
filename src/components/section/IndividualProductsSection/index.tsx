@@ -19,15 +19,15 @@ export default function IndividualProductsSection() {
   };
 
   return (
-    <section className='py-vw-4 bg-cream-50'>
+    <section className='py-8 md:py-vw-4 bg-cream-50'>
       <div className='container mx-auto px-4'>
-        <div className='text-center mb-vw-4'>
+        <div className='text-center mb-8 md:mb-vw-4'>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.7 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className='text-[3vw] uppercase font-serif font-bold text-neutral-700 mb-vw-1'
+            className='text-2xl md:text-[3vw] uppercase font-serif font-bold text-neutral-700 mb-2 md:mb-vw-1'
           >
             Sản phẩm lẻ <span className='text-brand-lavender'>Skylarbox</span>
           </motion.h2>
@@ -36,7 +36,7 @@ export default function IndividualProductsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.7 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className='text-brand-gray text-[1.2vw] text-center italic'
+            className='text-brand-gray text-sm md:text-[1.2vw] text-center italic'
           >
             Khám phá các sản phẩm chữa lành được chọn lọc kỹ lưỡng
           </motion.p>
@@ -46,7 +46,7 @@ export default function IndividualProductsSection() {
         <div className='relative'>
           <Swiper
             modules={[Pagination, Autoplay]}
-            spaceBetween={20}
+            spaceBetween={16}
             slidesPerView={1}
             // navigation={{
             //   nextEl: ".swiper-button-next",
@@ -62,8 +62,13 @@ export default function IndividualProductsSection() {
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
             breakpoints={{
+              480: {
+                slidesPerView: 1,
+                spaceBetween: 16,
+              },
               640: {
                 slidesPerView: 2,
                 spaceBetween: 20,
@@ -99,31 +104,53 @@ export default function IndividualProductsSection() {
           </Swiper>
 
           {/* Custom Pagination */}
-          <div className='swiper-pagination !bottom-vw-1 !left-1/2 !transform !-translate-x-1/2 !z-20'></div>
+          <div className='swiper-pagination !bottom-4 md:!bottom-vw-1 !left-1/2 !transform !-translate-x-1/2 !z-20'></div>
         </div>
       </div>
 
       <style jsx global>{`
         .product-swiper {
-          padding-bottom: 4vw;
-          padding-top: 4vw;
-          margin-top: -4vw;
+          padding-bottom: 16px;
+          padding-top: 16px;
+          margin-top: -16px;
+        }
+
+        @media (min-width: 768px) {
+          .product-swiper {
+            padding-bottom: 4vw;
+            padding-top: 4vw;
+            margin-top: -4vw;
+          }
         }
 
         .swiper-pagination-bullet {
-          width: 0.8vw !important;
-          height: 0.8vw !important;
+          width: 8px !important;
+          height: 8px !important;
           background: #c4d4a8 !important;
           opacity: 0.3 !important;
-          margin: 0 0.2vw !important;
+          margin: 0 4px !important;
           transition: all 0.3s ease !important;
           cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+          .swiper-pagination-bullet {
+            width: 0.8vw !important;
+            height: 0.8vw !important;
+            margin: 0 0.2vw !important;
+          }
         }
 
         .swiper-pagination-bullet-active {
           background: #b08bd4 !important;
           opacity: 1 !important;
-          box-shadow: 0 0.2vw 0.8vw rgba(176, 139, 212, 0.3) !important;
+          box-shadow: 0 2px 8px rgba(176, 139, 212, 0.3) !important;
+        }
+
+        @media (min-width: 768px) {
+          .swiper-pagination-bullet-active {
+            box-shadow: 0 0.2vw 0.8vw rgba(176, 139, 212, 0.3) !important;
+          }
         }
       `}</style>
     </section>
@@ -155,24 +182,24 @@ function ProductCard({ product, index }: ProductCardProps) {
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className='flex-shrink-0 w-vw-20 px-vw-1'
+      className='flex-shrink-0 w-full md:w-vw-20 px-2 md:px-vw-1'
     >
       <motion.div
-        className='group relative bg-white rounded-[1vw] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer'
+        className='group relative bg-white rounded-lg md:rounded-[1vw] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer'
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        whileHover={{ y: -8 }}
+        whileHover={{ y: -4, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
         {/* Badge */}
         {product.badge && (
-          <div className='absolute top-vw-1 left-vw-1 z-10 bg-white/70 text-neutral-700 px-[0.6vw] py-[0.4vw] rounded-full text-[0.6vw] font-medium'>
+          <div className='absolute top-2 left-2 md:top-vw-1 md:left-vw-1 z-10 bg-white/70 text-neutral-700 px-2 py-1 md:px-[0.6vw] md:py-[0.4vw] rounded-full text-xs md:text-[0.6vw] font-medium'>
             {product.badge}
           </div>
         )}
 
         {/* Image Container */}
-        <div className='relative h-vw-16 overflow-hidden'>
+        <div className='relative h-48 md:h-vw-16 overflow-hidden'>
           {/* Product View */}
           <motion.div
             className='absolute inset-0 w-full h-full'
@@ -190,41 +217,41 @@ function ProductCard({ product, index }: ProductCardProps) {
         </div>
 
         {/* Content Section */}
-        <div className='p-vw-1'>
+        <div className='p-4 md:p-vw-1'>
           {/* Title */}
           <div>
-            <h3 className='font-semibold text-gray-900 text-[1.2vw] mb-vw line-clamp-2 group-hover:text-brand-lavender transition-colors duration-300'>
+            <h3 className='font-semibold text-gray-900 text-base md:text-[1.2vw] mb-2 md:mb-vw line-clamp-2 group-hover:text-brand-lavender transition-colors duration-300'>
               {product.name}
             </h3>
 
             {/* Description */}
             {product.description && (
-              <p className='text-gray-600 text-[.8vw] mb-vw line-clamp-2 italic'>
+              <p className='text-gray-600 text-sm md:text-[.8vw] mb-3 md:mb-vw line-clamp-2 italic'>
                 {product.description}
               </p>
             )}
 
             <div className='flex items-center justify-between'>
-              <span className='text-brand-lavender font-bold text-[1.2vw]'>
+              <span className='text-brand-lavender font-bold text-lg md:text-[1.2vw]'>
                 {product.price}
               </span>
               {/* Action Button */}
-              <div className='flex justify-end gap-[.4vw]'>
+              <div className='flex justify-end gap-2 md:gap-[.4vw]'>
                 <motion.button
-                  className='bg-brand-lavender text-white p-[0.6vw] rounded-full hover:bg-brand-lavender/90 transition-colors duration-300 shadow-md'
+                  className='bg-brand-lavender text-white p-2 md:p-[0.6vw] rounded-full hover:bg-brand-lavender/90 transition-colors duration-300 shadow-md'
                   title='Xem chi tiết'
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Eye className='w-[1vw] h-[1vw]' />
+                  <Eye className='w-4 h-4 md:w-[1vw] md:h-[1vw]' />
                 </motion.button>
                 <motion.button
-                  className='bg-brand-lavender text-white p-[0.6vw] rounded-full hover:bg-brand-lavender/90 transition-colors duration-300 shadow-md'
+                  className='bg-brand-lavender text-white p-2 md:p-[0.6vw] rounded-full hover:bg-brand-lavender/90 transition-colors duration-300 shadow-md'
                   title='Thêm vào giỏ hàng'
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <ShoppingCart className='w-[1vw] h-[1vw]' />
+                  <ShoppingCart className='w-4 h-4 md:w-[1vw] md:h-[1vw]' />
                 </motion.button>
               </div>
             </div>
